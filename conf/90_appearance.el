@@ -9,9 +9,9 @@
 (setq fill-column 80)
 
 ;; no menu tool bar
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;;(menu-bar-mode -1)
+;;(tool-bar-mode -1)
+;;(scroll-bar-mode -1)
 (require 'yascroll)
 (global-yascroll-bar-mode t)
 
@@ -25,16 +25,16 @@
 (file-name-shadow-mode t)
 
 ;; alpha
-(set-frame-parameter (selected-frame) 'alpha '(93 80))
+;;(set-frame-parameter (selected-frame) 'alpha '(93 80))
 
 ;; theme
 (load-theme 'manoj-dark t)
 
 ;; font
-(set-face-attribute 'default nil :family "Migu 1M" :height 120)
-(set-fontset-font
- (frame-parameter nil 'font)
- 'japanese-jisx0208 (font-spec :famiry "Migu 1M"))
+;;(set-face-attribute 'default nil :family "Migu 1M" :height 120)
+;;(set-fontset-font
+;; (frame-parameter nil 'font)
+;; 'japanese-jisx0208 (font-spec :famiry "Migu 1M"))
 
 ;; auto highlight
 (require 'auto-highlight-symbol)

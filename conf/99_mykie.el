@@ -4,7 +4,7 @@
 
 
 (require 'mykie)
-(mykie:set-keys nil
+ (mykie:set-keys nil
   "C-a"
   :default (beginning-of-line)
   :C-u (back-to-indentation)

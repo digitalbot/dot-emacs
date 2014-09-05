@@ -8,7 +8,7 @@
 
 (global-set-key (kbd "M-x")     'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-;") 'helm-for-files)
+(global-set-key (kbd "C-c ;") 'helm-for-files)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "M-y")     'helm-show-kill-ring)
 (global-set-key (kbd "C-c i")   'helm-imenu)
@@ -16,13 +16,13 @@
 
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-map (kbd "C-w") 'kill-region-or-backward-kill-word)
-(define-key helm-map (kbd "C-:") 'helm-select-action)
+(define-key helm-map (kbd "C-c :") 'helm-select-action)
 (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
 (define-key helm-find-files-map (kbd "C-w") 'kill-region-or-backward-kill-word)
 (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-find-files-map (kbd "C-:") 'helm-select-action)
+(define-key helm-find-files-map (kbd "C-c :") 'helm-select-action)
 (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-read-file-map (kbd "C-:") 'helm-select-action)
+(define-key helm-read-file-map (kbd "C-c :") 'helm-select-action)
 
 ;; Disable helm in some functions
 (add-to-list 'helm-completing-read-handlers-alist '(find-alternate-file . nil))
@@ -76,10 +76,9 @@
 (setq helm-swoop-split-with-multiple-windows nil)
 
 
-(require 'ac-helm)
-(global-set-key (kbd "C-:") 'ac-complete-with-helm)
-(define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
-
+;;(require 'ac-helm)
+;;(global-set-key (kbd "C-c :") 'ac-complete-with-helm)
+;;(define-key ac-complete-mode-map (kbd "C-c :") 'ac-complete-with-helm) ;
 
 (require 'helm-c-yasnippet)
 (setq helm-yas-display-key-on-candidate t)
