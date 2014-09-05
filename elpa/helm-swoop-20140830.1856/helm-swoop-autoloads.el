@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (helm-multi-swoop-edit helm-multi-swoop-all helm-multi-swoop
 ;;;;;;  helm-swoop-from-isearch helm-swoop helm-swoop-back-to-last-point)
-;;;;;;  "helm-swoop" "helm-swoop.el" (21507 47683 0 0))
+;;;;;;  "helm-swoop" "helm-swoop.el" (21513 19957 890928 595000))
 ;;; Generated autoloads from helm-swoop.el
 
 (autoload 'helm-swoop-back-to-last-point "helm-swoop" "\
@@ -40,8 +40,8 @@ Invoke `helm-swoop' from isearch.
 
 ;;;***
 
-;;;### (autoloads nil nil ("helm-swoop-pkg.el") (21507 47683 253000
-;;;;;;  0))
+;;;### (autoloads nil nil ("helm-swoop-pkg.el") (21513 19957 902045
+;;;;;;  711000))
 
 ;;;***
 

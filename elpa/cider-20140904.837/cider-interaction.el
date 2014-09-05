@@ -452,7 +452,8 @@ reading input."
 The two arguments START and END are character positions;
 they can be in either order."
   (interactive "r")
-  (cider-interactive-eval (buffer-substring-no-properties start end)))
+  (let ((code (buffer-substring-no-properties start end)))
+    (cider-interactive-eval code start)))
 
 (defun cider-eval-buffer ()
   "Evaluate the current buffer."
@@ -477,10 +478,11 @@ they can be in either order."
   "Evaluate the current toplevel form, and print result in the minibuffer.
 With a PREFIX argument, print the result in the current buffer."
   (interactive "P")
-  (let ((form (cider-defun-at-point)))
+  (let ((form (cider-defun-at-point))
+        (start-pos (car (cider--region-for-defun-at-point))))
     (if prefix
         (cider-interactive-eval-print form)
-      (cider-interactive-eval form))))
+      (cider-interactive-eval form start-pos))))
 
 (defun cider-ns-form ()
   "Retrieve the ns form."
@@ -540,6 +542,11 @@ With a PREFIX argument, print the result in the current buffer."
      (point))
    (point)))
 
+(defun cider-last-sexp-start-pos ()
+  (save-excursion
+    (backward-sexp)
+    (point)))
+
 ;;;
 (defun cider-tramp-prefix (&optional buffer)
   "Use the filename for BUFFER to determine a tramp prefix.
@@ -588,9 +595,9 @@ If no local or remote file exists, return nil."
     (cond ((equal local-path "") "")
           ((and cider-prefer-local-resources (file-exists-p local-path))
            local-path)
-          ((file-exists-p tramp-path)
+          ((and tramp-path (file-exists-p tramp-path))
            tramp-path)
-          ((file-exists-p local-path)
+          ((and local-path (file-exists-p local-path))
            local-path))))
 
 (defun cider--url-to-file (url)
@@ -604,10 +611,19 @@ create a valid path."
         (match-string 1 filename)
       filename)))
 
+(defun cider--tooling-file-p (file-name)
+  "Return t if FILE-NAME is not a 'real' source file.
+Currently, only check if the relative file name starts with 'form-init'
+which nREPL uses for temporary evaluation file names."
+  (string-match-p "\\bform-init" (file-name-nondirectory file-name)))
+
 (defun cider-find-file (url)
   "Return a buffer visiting the file URL if it exists, or nil otherwise.
-The argument should have a scheme prefix, and represent a fully-qualified file
-path or an entry within a zip/jar archive."
+If URL has a scheme prefix, it must represent a fully-qualified file path
+or an entry within a zip/jar archive. If URL doesn't contain a scheme
+prefix and is an absolute path, it is treated as such. Finally, if URL is
+relative, it is expanded within each of the open Clojure buffers till an
+existing file ending with URL has been found."
   (cond ((string-match "^file:\\(.+\\)" url)
          (-when-let* ((file (cider--url-to-file (match-string 1 url)))
                       (path (cider--file-path file)))
@@ -639,7 +655,15 @@ path or an entry within a zip/jar archive."
                      (setq-local buffer-read-only t)
                      (set-buffer-modified-p nil)
                      (set-auto-mode)
-                     (current-buffer))))))))
+                     (current-buffer))))))
+        (t (-if-let (path (cider--file-path url))
+               (find-file-noselect path)
+             (unless (file-name-absolute-p url)
+               (cl-loop for bf in (cider-util--clojure-buffers)
+                        for path = (with-current-buffer bf
+                                     (expand-file-name url))
+                        if (and path (file-exists-p path))
+                        return (find-file-noselect path)))))))
 
 (defun cider-find-var-file (var)
   "Return the buffer visiting the file in which VAR is defined, or nil if
@@ -686,9 +710,10 @@ When called interactively, this operates on point."
   "Jump to location give by INFO.
 INFO object is returned by `cider-var-info' or `cider-member-info'.
 OTHER-BUFFER is passed to `cider-jamp-to'."
-  (-if-let* ((file (cadr (assoc "file" info)))
-             (line (cadr (assoc "line" info)))
-             (buffer (cider-find-file file)))
+  (-if-let* ((line (cadr (assoc "line" info)))
+             (file (cadr (assoc "file" info)))
+             (buffer (unless (cider--tooling-file-p file)
+                       (cider-find-file file))))
       (cider-jump-to buffer (cons line nil) other-buffer)
         ;; var was created interactively and has no file info
         (-if-let* ((ns (cadr (assoc "ns" info)))
@@ -1092,7 +1117,7 @@ until we find a delimiters that's not inside a string."
     (backward-char)))
 
 (defun cider--find-last-error-location (buffer message)
-  "Return the location (begin . end) in BUFFER from the clojure error MESSAGE.
+  "Return the location (begin . end) in BUFFER from the Clojure error MESSAGE.
 If location could not be found, return nil."
   (save-excursion
     (with-current-buffer buffer
@@ -1273,13 +1298,34 @@ When invoked with a prefix ARG the command doesn't prompt for confirmation."
                 (cider-interactive-eval-print-handler buffer)
                 (cider-current-ns))))
 
-(defun cider-interactive-eval (form)
+(defun cider--dummy-file-contents (form start-pos)
+  (let ((current-ns (cider-current-ns))
+        (start-line (line-number-at-pos start-pos))
+        (start-column (save-excursion (goto-char start-pos) (current-column))))
+    (with-temp-buffer
+      (insert (format "(ns %s)" current-ns))
+      (dotimes (_ (1- start-line))
+        (insert "\n"))
+      (dotimes (_ start-column)
+        (insert " "))
+      (insert form)
+      (buffer-string))))
+
+(defun cider-interactive-eval (form &optional start-pos)
   "Evaluate the given FORM and print value in minibuffer."
   (cider--clear-compilation-highlights)
-  (let ((buffer (current-buffer)))
-    (cider-eval form
-                (cider-interactive-eval-handler buffer)
-                (cider-current-ns))))
+  (let ((buffer (current-buffer))
+        (filename (buffer-file-name)))
+    (if buffer-file-name
+        (nrepl-send-request (list "op" "load-file"
+                                  "session" (nrepl-current-session)
+                                  "file" (cider--dummy-file-contents form start-pos)
+                                  "file-path" (funcall cider-to-nrepl-filename-function (cider--server-filename filename))
+                                  "file-name" (file-name-nondirectory filename))
+                            (cider-interactive-eval-handler buffer))
+      (cider-eval form
+                  (cider-interactive-eval-handler buffer)
+                  (cider-current-ns)))))
 
 (defun cider-interactive-eval-to-repl (form)
   "Evaluate the given FORM and print it's value in REPL buffer."
@@ -1294,7 +1340,7 @@ If invoked with a PREFIX argument, print the result in the current buffer."
   (interactive "P")
   (if prefix
       (cider-interactive-eval-print (cider-last-sexp))
-    (cider-interactive-eval (cider-last-sexp))))
+    (cider-interactive-eval (cider-last-sexp) (cider-last-sexp-start-pos))))
 
 (defun cider-eval-last-sexp-and-replace ()
   "Evaluate the expression preceding point and replace it with its result."
