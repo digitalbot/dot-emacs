@@ -1,0 +1,8 @@
+alias kosuke cd c:/Users/kosuke/
+alias desk cd /Users/kosuke/Desktop
+alias jv javac $1.java && java $1
+alias up cd ../
+alias ll ls -l
+alias ffo find-file-other-window $1
+alias ff find-file $1
+alias eff elscreen-find-file $1
