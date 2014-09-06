@@ -3,6 +3,7 @@
 ;;;----------------------------------------
 
 
+;; c-k
 (setq kill-whole-line t)
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -35,3 +36,17 @@
   (defconst *dmacro-key* "\C-t" "repeat key")
   (global-set-key *dmacro-key* 'dmacro-exec)
   (autoload 'dmacro-exec "dmacro" nil t))
+
+
+
+(defun kill-word-or-delete-horizontal-space (arg)
+  (interactive "p")
+  (let ((pos (point)))
+    (if (and (not (eobp))
+             (= (char-syntax (char-after pos)) 32)
+             (= (char-syntax (char-after (1+ pos))) 32))
+        (prog1 (delete-horizontal-space)
+          (unless (memq (char-after pos) '(?( ?) ?{ ?} ?[ ?]))
+            (insert " ")))
+      (kill-word arg))))
+(global-set-key (kbd "M-d") 'kill-word-or-delete-horizontal-space)

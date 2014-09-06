@@ -20,8 +20,8 @@
         make-local))
 
 ;; load-path
-(setq load-path (cons "~/.emacs.d/" load-path))
-(let ((default-directory "~/.emacs.d/site-lisp"))
+(setq load-path (cons user-emacs-directory load-path))
+(let ((default-directory (concat user-emacs-directory "site-lisp")))
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
@@ -34,8 +34,7 @@
 
 ;; init-loader
 (if (require 'init-loader nil t)
-     (init-loader-load "~/.emacs.d/conf")
-   (load-file "~/.emacs.d/init-minimal.el")
-   )
+     (init-loader-load (concat user-emacs-directory "conf"))
+   (load-file (concat user-emacs-directory "init-minimal.el")))
 
 (cd "~/")

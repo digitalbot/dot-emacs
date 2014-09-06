@@ -2,12 +2,11 @@
 ;;; multiple-cursors
 ;;;----------------------------------------
 
-(require 'multiple-cursors)
-(require 'smartrep)
 
 (global-set-key (kbd "C-M-c") 'mc/edit-lines)
 (global-set-key (kbd "C-M-c") 'mc/mark-all-in-region)
 
+(require 'smartrep)
 (smartrep-define-key
     global-map "C-q" '(("j" . 'mc/mark-next-like-this)
                        ("k" . 'mc/mark-previous-like-this)

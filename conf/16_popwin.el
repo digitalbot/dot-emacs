@@ -35,4 +35,5 @@
         :position right
         )
       popwin:special-display-config)
-(push '(".*helm.*" :height 20 :regexp t) popwin:special-display-config)
+(push '(".*helm.*" :height 0.4 :regexp t) popwin:special-display-config)
+

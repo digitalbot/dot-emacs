@@ -3,9 +3,9 @@
 ;;;----------------------------------------
 
 
+;; emacsclient
 (require 'server)
-(unless (server-running-p)
-  (server-start))
+(unless (server-running-p) (server-start))
 
 ;; kill process when quit
 (defadvice save-buffers-kill-terminal (before my-save-buffers-kill-terminal activate)
@@ -14,12 +14,9 @@
       (set-process-query-on-exit-flag p nil))))
 
 ;; unique
-(require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; dired
-(require 'dired-x)
-(require 'wdired)
+;; dired and wdired
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
 (setq wdired-allow-to-change-permissions t)
 (setq dired-dwim-target t)
@@ -27,15 +24,12 @@
 (setq dired-isearch-filenames t)
 
 ;; ace jump
-(require 'ace-jump-mode)
 (global-set-key (kbd "C-q SPC") 'ace-jump-mode)
-
-(require 'savekill)
 
 ;; recentf
 (setq recentf-auto-cleanup 'never)
 (recentf-mode 1)
-(require 'recentf-ext)
+;; recentf-ext
 (setq recentf-max-menu-items 8000)
 (setq recentf-max-saved-items 10000)
 
@@ -49,16 +43,20 @@
 (global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
 
 ;; auto-save-buffer
-(require 'auto-save-buffers-enhanced)
 (setq auto-save-buffers-enhanced-interval 1)
 (auto-save-buffers-enhanced t)
 
+(require 'savekill)
+
+;; duplicate-thing
+(global-set-key (kbd "C-,") 'duplicate-thing)
+(global-set-key (kbd "C-c ,") 'duplicate-thing)
 
 
 ;;--- function ---
 (defun dot-emacs()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file (concat user-emacs-directory "init.el")))
 
 (defun kill-region-or-backward-kill-word ()
   (interactive)

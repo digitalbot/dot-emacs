@@ -5,8 +5,8 @@
 (require 'flex-autopair)
 (flex-autopair-mode 1)
 
-;; tramp‰z‚µ‚¾‚Æd‚¢
-;; C-@ mark-word*‚ªC-SPC‚É•Ï‚¦‚ç‚ê‚é
+;; trampè¶Šã—ã ã¨é‡ã„
+;; C-@ mark-word*ãŒC-SPCã«å¤‰ãˆã‚‰ã‚Œã‚‹
 (require 'key-combo)
 ;;(setq default-input-method "MacOSX")
 

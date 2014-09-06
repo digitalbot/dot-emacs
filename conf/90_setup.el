@@ -1,4 +1,4 @@
- ;;;----------------------------------------
+;;;----------------------------------------
 ;;; setup
 ;;;----------------------------------------
 
@@ -25,8 +25,6 @@
 
 (savehist-mode t)
 (setq history-length 3500)
-
-(setq ring-bell-function 'ignore)
 
 ;; auto-revert
 (setq global-auto-revert-mode t)
@@ -64,8 +62,8 @@
 (custom-set-variables
  '(read-file-name-completion-ignore-case t))
 
-;; image
-(auto-image-file-mode t)
+;; Bell
+(setq ring-bell-function 'ignore)
 
 ;; symlink to truename
 (setq-default find-file-visit-truename t)
@@ -74,18 +72,36 @@
       eval-expression-print-length nil
       eval-expression-debug-on-error nil)
 
+;; bidi issue
+(if (> (string-to-number emacs-version) 24)
+    (setq-default bidi-display-reordering nil bidi-paragraph-direction (quote left-to-right))
+  )
+
+(when ns-p
+  ;; inline-patch skk使ってないから意味ないかも
+  (when (and (eq window-system 'ns)
+             (or (= emacs-major-version 23) (= emacs-major-version 24)))
+    ;;(setq default-input-method "MacOSX")
+    (mac-add-key-passed-to-system 'shift))
+  )
+
 ;; for error
 (setq max-specpdl-size 5000)
 (setq max-lisp-eval-depth 2000)
 
-;; ime for windows
-;;(setq default-input-method "W32-IME")
-;;(setq-default w32-ime-mode-line-state-indicator "[A]")
-;;(setq w32-ime-mode-line-state-indicator-list '("[A]" "[J]" "[A]"))
-;;(w32-ime-initialize)
-;;(wrap-function-to-control-ime 'universal-argument t nil)
-;;(wrap-function-to-control-ime 'read-string nil nil)
-;;(wrap-function-to-control-ime 'read-from-minibuffer nil nil)
-;;(wrap-function-to-control-ime 'y-or-n-p nil nil)
-;;(wrap-function-to-control-ime 'yes-or-no-p nil nil)
-;;(wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+
+(when windows-p
+  (setq default-input-method "W32-IME")
+  (setq-default w32-ime-mode-line-state-indicator "[A]")
+  (setq w32-ime-mode-line-state-indicator-list '("[A]" "[J]" "[A]"))
+  (w32-ime-initialize)
+  (wrap-function-to-control-ime 'universal-argument t nil)
+  (wrap-function-to-control-ime 'read-string nil nil)
+  (wrap-function-to-control-ime 'read-from-minibuffer nil nil)
+  (wrap-function-to-control-ime 'y-or-n-p nil nil)
+  (wrap-function-to-control-ime 'yes-or-no-p nil nil)
+  (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+  )
+

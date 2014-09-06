@@ -3,7 +3,6 @@
 ;;;----------------------------------------
 
 
-;; perl mode
 (defalias 'perl-mode 'cperl-mode)
 (setq auto-mode-alist
 	  (append '(("\\.\\([pP][Llhm]\\|al\\|t\\|cgi\\|psgi\\)$" . cperl-mode))

@@ -3,26 +3,10 @@
 ;;;----------------------------------------
 
 
-(require 'helm-config)
 (helm-mode 1)
-
-(global-set-key (kbd "M-x")     'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-c ;") 'helm-for-files)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
-(global-set-key (kbd "M-y")     'helm-show-kill-ring)
-(global-set-key (kbd "C-c i")   'helm-imenu)
-(global-set-key (kbd "C-x b")   'helm-buffers-list)
-
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-map (kbd "C-w") 'kill-region-or-backward-kill-word)
-(define-key helm-map (kbd "C-c :") 'helm-select-action)
-(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-(define-key helm-find-files-map (kbd "C-w") 'kill-region-or-backward-kill-word)
-(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-find-files-map (kbd "C-c :") 'helm-select-action)
-(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-read-file-map (kbd "C-c :") 'helm-select-action)
+(setq helm-candidate-number-limit 150)
+(setq helm-quick-update t)
+(setq helm-su-or-sudo "sudo")
 
 ;; Disable helm in some functions
 (add-to-list 'helm-completing-read-handlers-alist '(find-alternate-file . nil))
@@ -60,28 +44,41 @@
                           ;;helm-source-files-in-current-dir
                           )))
 
-(require 'helm-descbinds)
+;; helm descbinds
 (helm-descbinds-mode)
 
 
-(require 'helm-swoop)
-(global-set-key (kbd "M-i") 'helm-swoop)
-(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
-(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
-(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
-
-(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+;; helm swoop
 (setq helm-multi-swoop-edit-save t)
 (setq helm-swoop-split-with-multiple-windows nil)
 
 
-;;(require 'ac-helm)
-;;(global-set-key (kbd "C-c :") 'ac-complete-with-helm)
-;;(define-key ac-complete-mode-map (kbd "C-c :") 'ac-complete-with-helm) ;
-
+;; helm yas
 (require 'helm-c-yasnippet)
-(setq helm-yas-display-key-on-candidate t)
-(setq helm-yas-space-match-any-greedy t)
-(global-set-key (kbd "C-q C-y") 'helm-c-yas-complete)
+(setq helm-c-yas-display-key-on-candidate t)
+(setq helm-c-yas-space-match-any-greedy t)
+
+
+;; cmigemo
+(setq helm-use-migemo t)
+;; 候補が表示されないときがあるので
+;; migemoらないように設定
+(defadvice helm-c-apropos
+  (around ad-helm-apropos activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+(defadvice helm-M-x
+  (around ad-helm-M-x activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+(defadvice helm-swoop
+  (around ad-helm-swoop activate)
+  (let ((helm-use-migemo nil))
+    ad-do-it))
+
+
+;; helm ag
+(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+(setq helm-ag-command-option "--all-text")
+(setq helm-ag-thing-at-point 'symbol)
 

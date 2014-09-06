@@ -6,11 +6,18 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
+;; thingopt
 (require 'thingopt)
 (define-thing-commands)
-(global-set-key (kbd "C-@") 'mark-word*)
-(global-set-key (kbd "C-(") 'mark-up-list)
+(if window-system
+    (progn
+      (global-set-key (kbd "C-(") 'mark-up-list)
+      (global-set-key (kbd "C-@") 'er/expand-region)    ;; expand-region
 
-(require 'expand-region)
-(global-set-key (kbd "C-`") 'er/expand-region)
+      )
+  (progn
+    (global-set-key (kbd "C-c @") 'er/expand-region)
+    )
+  )
+
 (transient-mark-mode t)

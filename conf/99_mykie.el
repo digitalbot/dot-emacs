@@ -2,9 +2,8 @@
 ;;; mykie
 ;;;----------------------------------------
 
-
 (require 'mykie)
- (mykie:set-keys nil
+(mykie:set-keys nil
   "C-a"
   :default (beginning-of-line)
   :C-u (back-to-indentation)
@@ -16,5 +15,5 @@
   :default (backward-kill-word 1)
   :region (kill-region (point) (mark))
 )
-;  :region 'align
-;  :region&C-u 'align-regexp
+;;  :region 'align
+;;  :region&C-u 'align-regexp

@@ -1,3 +1,4 @@
+.frameposize
 .session
 ac-comphist.dat
 history
@@ -13,6 +14,7 @@ var/
 image-dired/
 server/
 eshell/lastdir
+conf/99_private.el
 *.elc
 
 *~

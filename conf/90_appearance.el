@@ -3,17 +3,36 @@
 ;;;----------------------------------------
 
 
-(setq truncate-partial-width-windows nil)
-
-
+;; fill column
 (setq fill-column 80)
 
-;; no menu tool bar
-;;(menu-bar-mode -1)
-;;(tool-bar-mode -1)
-;;(scroll-bar-mode -1)
-(require 'yascroll)
-(global-yascroll-bar-mode t)
+(when window-system
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (auto-image-file-mode t)
+  (set-frame-parameter (selected-frame) 'alpha '(93 80))
+  (when nt-p
+    (set-face-attribute 'default nil :family "Migu 1M" :height 120)
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'japanese-jisx0208 (font-spec :famiry "Migu 1M"))
+    ;; save frame position
+    )
+  (when darwin-p
+    (require 'save-frame-posize)
+    (set-face-attribute 'default nil
+                        :family "Ricty"
+                        :height 150)
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'japanese-jisx0208
+     '("Ricty" . "iso10646-*")))
+
+  ;; hilight yanked
+  (require 'volatile-highlights)
+  (volatile-highlights-mode t)
+  )
 
 ;; show line and column
 (column-number-mode t)
@@ -24,20 +43,13 @@
 
 (file-name-shadow-mode t)
 
-;; alpha
-;;(set-frame-parameter (selected-frame) 'alpha '(93 80))
-
 ;; theme
-(load-theme 'manoj-dark t)
-
-;; font
-;;(set-face-attribute 'default nil :family "Migu 1M" :height 120)
-;;(set-fontset-font
-;; (frame-parameter nil 'font)
-;; 'japanese-jisx0208 (font-spec :famiry "Migu 1M"))
+(if window-system
+    (load-theme 'manoj-dark t)
+  (load-theme 'wombat t)
+  )
 
 ;; auto highlight
-(require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
 (ahs-set-idle-interval 2.0)
 
@@ -47,24 +59,12 @@
 (set-face-attribute 'hl-paren-face nil :weight 'bold)
 (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
 
-(require 'fill-column-indicator)
+;; fill-column-indicator
 (setq fci-rule-color "gray")
 (setq fci-rule-column 80)
 (define-globalized-minor-mode global-fci-mode fci-mode turn-on-fci-mode)
 
-(when (or window-system (eq emacs-major-version '21))
-  (defadvice yank (after ys:highlight-string activate)
-    (let ((ol (make-overlay (mark t) (point))))
-      (overlay-put ol 'face 'highlight)
-      (sit-for 0.5)
-      (delete-overlay ol)))
-  (defadvice yank-pop (after ys:highlight-string activate)
-    (when (eq last-command 'yank)
-      (let ((ol (make-overlay (mark t) (point))))
-        (overlay-put ol 'face 'highlight)
-        (sit-for 0.5)
-        (delete-overlay ol)))))
-
+;; highlight-indentation
 (require 'highlight-indentation)
 (set-face-background 'highlight-indentation-face "#28222A")
 (set-face-background 'highlight-indentation-current-column-face "#28222A")
@@ -74,6 +74,18 @@
 
 ;; hilight line
 (require 'hl-line+)
+(defface hi-underline
+  '((((class color)
+      (background dark))
+     (:background"#0f122a" :underline t))
+     ;; (:background"#0f122a" :Underline "#437"))
+     ;; (:background"#0f122a"))
+    (((class color)
+      (background light))
+     (:underline "#483d8b"))
+    (t ()))
+  "*Face used by hi-line.")
 (global-hl-line-mode)
-(setq hl-line-face 'underline)
+;;(setq hl-line-face 'underline)
+(setq hl-line-face 'hi-underline)
 
