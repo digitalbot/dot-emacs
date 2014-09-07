@@ -7,6 +7,9 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
+;; open-junk-file
+(setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
+
 ;; kill process when quit
 (defadvice save-buffers-kill-terminal (before my-save-buffers-kill-terminal activate)
   (when (process-list)
@@ -35,6 +38,8 @@
 
 ;; anzu
 (global-anzu-mode +1)
+(set-face-attribute 'anzu-mode-line nil
+                    :foreground "blue" :weight 'bold)
 (custom-set-variables
  '(anzu-mode-lighter "")
  '(anzu-deactivate-region t)
@@ -54,9 +59,13 @@
 
 
 ;;--- function ---
-(defun dot-emacs()
+(defun load-dot-emacs()
   (interactive)
   (find-file (concat user-emacs-directory "init.el")))
+
+(defun go-dot-emacs()
+  (interactive)
+  (find-file user-emacs-directory))
 
 (defun kill-region-or-backward-kill-word ()
   (interactive)

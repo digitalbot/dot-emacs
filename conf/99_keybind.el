@@ -18,6 +18,7 @@
 
 (global-set-key (kbd "C-q C-o") 'delete-other-windows)
 (global-set-key (kbd "C-q g") 'goto-line)
+(global-set-key (kbd "C-q C-.") '(lambda () (interactive) (insert "->")))
 (global-set-key (kbd "C-q .") '(lambda () (interactive) (insert "->")))
 (global-set-key (kbd "C-q C-d") 'describe-bindings)
 (global-set-key (kbd "C-q C-a") 'mark-whole-buffer)

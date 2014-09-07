@@ -31,7 +31,7 @@
 
 (set-face-attribute 'powerline-active2 nil
                     :foreground "#538"
-                    :background "#678"
+                    :background "#78a"
                     :inherit 'mode-line)
 
 (powerline-default-theme)
