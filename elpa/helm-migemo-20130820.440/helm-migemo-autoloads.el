@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads nil nil ("helm-migemo-pkg.el" "helm-migemo.el")
-;;;;;;  (21482 44058 507000 0))
+;;;;;;  (21516 65274 152000 0))
 
 ;;;***
 

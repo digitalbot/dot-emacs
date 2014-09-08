@@ -4,9 +4,9 @@
 
 
 ;;;### (autoloads (helm-do-ag helm-ag helm-ag-this-file helm-ag-clear-stack
-;;;;;;  helm-ag-pop-stack) "helm-ag" "../../../../.emacs.d/elpa/helm-ag-20140820.114/helm-ag.el"
-;;;;;;  "c907ce875776682c6b9542a25ba8393d")
-;;; Generated autoloads from ../../../../.emacs.d/elpa/helm-ag-20140820.114/helm-ag.el
+;;;;;;  helm-ag-pop-stack) "helm-ag" "helm-ag.el" (21516 65281 0
+;;;;;;  0))
+;;; Generated autoloads from helm-ag.el
 
 (autoload 'helm-ag-pop-stack "helm-ag" "\
 
@@ -35,9 +35,8 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/helm-ag-20140820.114/helm-ag-pkg.el"
-;;;;;;  "../../../../.emacs.d/elpa/helm-ag-20140820.114/helm-ag.el")
-;;;;;;  (21515 9271 831955 0))
+;;;### (autoloads nil nil ("helm-ag-pkg.el") (21516 65281 441000
+;;;;;;  0))
 
 ;;;***
 

@@ -3,9 +3,9 @@
 ;;; Code:
 
 
-;;;### (autoloads (helm-ls-git-ls) "helm-ls-git" "../../../../.emacs.d/elpa/helm-ls-git-20140830.43/helm-ls-git.el"
-;;;;;;  "f43bdd50964303c2888fc91aa223c0a3")
-;;; Generated autoloads from ../../../../.emacs.d/elpa/helm-ls-git-20140830.43/helm-ls-git.el
+;;;### (autoloads (helm-ls-git-ls) "helm-ls-git" "helm-ls-git.el"
+;;;;;;  (21516 65275 0 0))
+;;; Generated autoloads from helm-ls-git.el
 
 (autoload 'helm-ls-git-ls "helm-ls-git" "\
 
@@ -14,9 +14,8 @@
 
 ;;;***
 
-;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/helm-ls-git-20140830.43/helm-ls-git-pkg.el"
-;;;;;;  "../../../../.emacs.d/elpa/helm-ls-git-20140830.43/helm-ls-git.el")
-;;;;;;  (21515 9249 910743 0))
+;;;### (autoloads nil nil ("helm-ls-git-pkg.el") (21516 65275 816000
+;;;;;;  0))
 
 ;;;***
 
