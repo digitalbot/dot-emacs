@@ -12,6 +12,7 @@
         org-end-of-line
         org-return-indent
         org-self-insert-command
+        paredit-forward-delete
         sp--cua-replace-region
         sp--self-insert-command
         toggle-input-method
