@@ -86,6 +86,7 @@
     (t ()))
   "*Face used by hi-line.")
 (global-hl-line-mode)
-;;(setq hl-line-face 'underline)
-(setq hl-line-face 'hi-underline)
-
+(if window-system
+    (setq hl-line-face 'hi-underline)
+  (setq hl-line-face 'underline)
+  )
