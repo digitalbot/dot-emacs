@@ -14,6 +14,7 @@
   "C-w"
   :default (backward-kill-word 1)
   :region (kill-region (point) (mark))
+  :region&C-u (kill-ring-save (point) (mark))
 )
 ;;  :region 'align
 ;;  :region&C-u 'align-regexp
