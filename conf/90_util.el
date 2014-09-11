@@ -8,6 +8,7 @@
 (unless (server-running-p) (server-start))
 
 ;; open-junk-file
+(require 'open-junk-file)
 (setq open-junk-file-format "~/junk/%Y%m%d-%H%M%S.")
 
 ;; kill process when quit

@@ -6,7 +6,9 @@
 (global-yascroll-bar-mode t)
 
 (require 'smooth-scroll)
-(smooth-scroll-mode t)
+(if ns-p
+    (smooth-scroll-mode t))
+
 
 
 ;; マウスのホイールスクロールスピードを調節

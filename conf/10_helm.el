@@ -60,21 +60,23 @@
 
 
 ;; cmigemo
-(setq helm-use-migemo t)
-;; 候補が表示されないときがあるので
-;; migemoらないように設定
-(defadvice helm-c-apropos
-  (around ad-helm-apropos activate)
-  (let ((helm-use-migemo nil))
-    ad-do-it))
-(defadvice helm-M-x
-  (around ad-helm-M-x activate)
-  (let ((helm-use-migemo nil))
-    ad-do-it))
-(defadvice helm-swoop
-  (around ad-helm-swoop activate)
-  (let ((helm-use-migemo nil))
-    ad-do-it))
+(eval-after-load "migemo"
+  '(progn
+     (setq helm-use-migemo t)
+     ;; 候補が表示されないときがあるので
+     ;; migemoらないように設定
+     (defadvice helm-c-apropos
+       (around ad-helm-apropos activate)
+       (let ((helm-use-migemo nil))
+         ad-do-it))
+     (defadvice helm-M-x
+       (around ad-helm-M-x activate)
+       (let ((helm-use-migemo nil))
+         ad-do-it))
+     (defadvice helm-swoop
+       (around ad-helm-swoop activate)
+       (let ((helm-use-migemo nil))
+         ad-do-it))))
 
 
 ;; helm ag

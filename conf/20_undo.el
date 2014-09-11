@@ -19,8 +19,8 @@
 (require 'point-undo)
 (global-set-key (kbd "C-.") 'point-undo)
 (global-set-key (kbd "C->") 'point-redo)
-(when window-system
-(global-set-key (kbd "C-c .") 'point-undo)
-(global-set-key (kbd "C-c >") 'point-redo)
-)
-
+(when (not window-system)
+  (require 'smartrep)
+  (smartrep-define-key
+      global-map "C-z" '(("." . (point-undo))
+                         (">" . (point-redo)))))

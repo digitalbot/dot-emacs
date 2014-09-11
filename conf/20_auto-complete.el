@@ -10,8 +10,7 @@
 (setq ac-auto-start 2)
 (setq ac-use-quick-help t)
 (defun ac-common-setup ()
-  (add-to-list 'ac-sources 'ac-source-filename)
-  )
+  (add-to-list 'ac-sources 'ac-source-filename))
 
 (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
 (ac-config-default)

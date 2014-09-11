@@ -44,7 +44,7 @@
 ;;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; truncate-lines
-(setq truncate-lines nil)
+(setq truncate-lines t)
 (setq truncate-partial-width-windows nil)
 ;; (setq visual-line-fringe-indicators '(t t))
 ;; (global-visual-line-mode)

@@ -27,12 +27,12 @@
     (set-fontset-font
      (frame-parameter nil 'font)
      'japanese-jisx0208
-     '("Ricty" . "iso10646-*")))
+     '("Ricty" . "iso10646-*"))))
 
-  ;; hilight yanked
-  (require 'volatile-highlights)
-  (volatile-highlights-mode t)
-  )
+;; hilight yanked
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+  
 
 ;; show line and column
 (column-number-mode t)

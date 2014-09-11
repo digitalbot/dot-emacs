@@ -11,10 +11,11 @@
 (setq auto-mode-alist
       (append '(("\\.\\(md\\)$" . markdown-mode))
               auto-mode-alist))
+(setq markdown-css-path (concat user-emacs-directory "etc/github.css"))
 (when windows-p
-  (setq markdown-css-path "~/.emacs.d/etc/github.css")
-  ;;(setq markdown-command "perl C:/strawberry/perl/site/bin/Markdown.pl")
-  (setq markdown-command "iconv -f sjis -t utf-8 | pandoc -s -S -p --template=html-github -f markdown_github")
+  (if (and (executable-find "iconv") (executable-find "pandoc"))
+      (setq markdown-command "iconv -f sjis -t utf-8 | pandoc -s -S -p --template=html-github -f markdown_github")
+    (setq markdown-command "perl C:/strawberry/perl/site/bin/Markdown.pl"))
   (setenv "LC_ALL" "C")
   )
 
