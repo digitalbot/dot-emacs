@@ -2,7 +2,7 @@
 ;;; cmigemo
 ;;;----------------------------------------
 
-(when ns-p
+(when (and (or ns-p linux-p) (executable-find "cmigemo"))
   (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
   (setq migemo-command "cmigemo")
   )
