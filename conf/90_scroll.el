@@ -9,8 +9,6 @@
 (if ns-p
     (smooth-scroll-mode t))
 
-
-
 ;; マウスのホイールスクロールスピードを調節
 (defun scroll-down-with-lines ()
   "" (interactive) (scroll-down 2))

@@ -3,6 +3,7 @@
 ;;;----------------------------------------
 
 
+;; org
 (setq auto-mode-alist
       (append '(("\\.\\(txt\\)$" . org-mode))
               auto-mode-alist))
@@ -23,3 +24,7 @@
 ;; paredit
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 (add-hook 'lisp-interacton-mode-hook 'enable-paredit-mode)
+
+
+;; js
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
