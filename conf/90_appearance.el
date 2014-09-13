@@ -7,6 +7,7 @@
 (setq fill-column 80)
 
 (when window-system
+  (setq frame-title-format "%f")
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)

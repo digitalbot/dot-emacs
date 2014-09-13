@@ -44,7 +44,8 @@
       magit git-gutter gitconfig-mode gitignore-mode
       go-mode go-snippets
       migemo anzu gtags fill-column-indicator
-      helm helm-ag helm-c-yasnippet helm-descbinds helm-gtags helm-ls-git helm-migemo helm-swoop helm-themes
+      helm helm-ag helm-c-yasnippet helm-descbinds helm-gtags
+      helm-ls-git helm-migemo helm-swoop helm-themes
       highlight-indentation highlight-parentheses hl-line+ volatile-highlights powerline
       js2-mode json-mode web-mode emmet-mode markdown-mode cperl-mode
       mykie key-combo ace-jump-mode
