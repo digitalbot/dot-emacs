@@ -12,7 +12,9 @@
 (setq auto-mode-alist
       (append '(("\\.\\(md\\)$" . markdown-mode))
               auto-mode-alist))
-(setq markdown-css-path (concat user-emacs-directory "etc/github.css"))
+;; (setq markdown-css-path (concat user-emacs-directory "etc/github.css"))
+(setq markdown-css-path
+      (concat "file://" (expand-file-name (concat user-emacs-directory "etc/github.css"))))
 (when windows-p
   (if (and (executable-find "iconv") (executable-find "pandoc"))
       (setq markdown-command "iconv -f sjis -t utf-8 | pandoc -s -S -p --template=html-github -f markdown_github")

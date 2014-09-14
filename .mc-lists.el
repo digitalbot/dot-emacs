@@ -5,6 +5,7 @@
       '(
         c-electric-delete-forward
         c-electric-semi&comma
+        c-electric-slash
         cua-delete-region
         cua-paste
         markdown-cycle
