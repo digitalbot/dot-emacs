@@ -14,11 +14,10 @@
   (auto-image-file-mode t)
   (set-frame-parameter (selected-frame) 'alpha '(93 80))
   (when nt-p
-    (set-face-attribute 'default nil :family "Migu 1M" :height 120)
+    (set-face-attribute 'default nil :family "Ricty Diminished Discord" :height 135)
     (set-fontset-font
      (frame-parameter nil 'font)
-     'japanese-jisx0208 (font-spec :famiry "Migu 1M"))
-    ;; save frame position
+     'japanese-jisx0208 (font-spec :famiry "Ricty Diminished Discord"))
     )
   (when darwin-p
     (require 'save-frame-posize)

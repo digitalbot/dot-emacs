@@ -44,7 +44,6 @@
 ;;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; truncate-lines
-(setq truncate-lines t)
 (setq truncate-partial-width-windows nil)
 ;; (setq visual-line-fringe-indicators '(t t))
 ;; (global-visual-line-mode)
@@ -79,8 +78,7 @@
 
 (when ns-p
   ;; inline-patch skk使ってないから意味ないかも
-  (when (and (eq window-system 'ns)
-             (or (= emacs-major-version 23) (= emacs-major-version 24)))
+  (when (or (= emacs-major-version 23) (= emacs-major-version 24))
     ;;(setq default-input-method "MacOSX")
     (mac-add-key-passed-to-system 'shift))
   )

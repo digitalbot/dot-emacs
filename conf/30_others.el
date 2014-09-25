@@ -7,6 +7,7 @@
 (setq auto-mode-alist
       (append '(("\\.\\(txt\\)$" . org-mode))
               auto-mode-alist))
+(setq org-startup-truncated nil)
 
 ;; markdown-mode
 (setq auto-mode-alist
