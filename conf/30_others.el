@@ -8,6 +8,9 @@
       (append '(("\\.\\(txt\\)$" . org-mode))
               auto-mode-alist))
 (setq org-startup-truncated nil)
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w)" "WIP(i)" "DONE(d)")))
+
 
 ;; markdown-mode
 (setq auto-mode-alist
