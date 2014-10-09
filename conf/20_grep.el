@@ -3,6 +3,7 @@
 ;;;----------------------------------------
 
 ;; ag
+(require 'ag)
 (custom-set-variables
  '(ag-highlight-search t)
  '(ag-reuse-window 'nil)
@@ -15,7 +16,4 @@
 (setq wgrep-auto-save-buffer t)
 (setq wgrep-change-readonly-file t)
 
-
-
-
-
+;; and helm-ag is in helm.el
