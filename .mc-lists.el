@@ -11,11 +11,14 @@
         markdown-cycle
         mykie:global-map:C-a:key
         mykie:global-map:C-e:key
+        mykie:global-map:C-w:key
         org-delete-char
         org-end-of-line
         org-return-indent
         org-self-insert-command
         paredit-forward-delete
+        paredit-open-round
+        paredit-semicolon
         sp--cua-replace-region
         sp--self-insert-command
         toggle-input-method
