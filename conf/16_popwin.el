@@ -22,18 +22,16 @@
                 ("*ag*")
                 ("*Perl *")
                 ("*Google Translate*")
-                ("*Codic Result*")
-                )
+                ("*Codic Result*"))
               popwin:special-display-config))
 (push '(" *auto-async-byte-compile*"
-        :height 14
+        :height 0.4
         :position bottom
         :noselect t)
       popwin:special-display-config)
 (push '(" *undo-tree*"
         :width 0.3
-        :position right
-        )
+        :position right)
       popwin:special-display-config)
 (push '(".*helm.*" :height 0.4 :regexp t) popwin:special-display-config)
 
