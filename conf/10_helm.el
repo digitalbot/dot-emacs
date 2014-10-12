@@ -49,6 +49,7 @@
 
 
 ;; helm swoop
+(require 'helm-swoop)
 (setq helm-multi-swoop-edit-save t)
 (setq helm-swoop-split-with-multiple-windows nil)
 

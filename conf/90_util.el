@@ -58,6 +58,8 @@
 (global-set-key (kbd "C-,") 'duplicate-thing)
 (global-set-key (kbd "C-c ,") 'duplicate-thing)
 
+(global-ace-isearch-mode +1)
+
 
 ;;--- function ---
 (defun load-dot-emacs()

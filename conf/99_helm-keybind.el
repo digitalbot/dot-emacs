@@ -27,12 +27,8 @@
 
 ;; helm swoop
 (global-set-key (kbd "M-i") 'helm-swoop)
-(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
 (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
 (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
-
-(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-;;(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
 
 ;; ac-helm
 (global-set-key (kbd "C-:") 'ac-complete-with-helm)
