@@ -27,26 +27,12 @@
 (setq dired-recursive-copies 'always)
 (setq dired-isearch-filenames t)
 
-;; ace jump
-(global-set-key (kbd "C-q SPC") 'ace-jump-mode)
-
 ;; recentf
 (setq recentf-auto-cleanup 'never)
 (recentf-mode 1)
 ;; recentf-ext
 (setq recentf-max-menu-items 8000)
 (setq recentf-max-saved-items 10000)
-
-;; anzu
-(global-anzu-mode +1)
-(set-face-attribute 'anzu-mode-line nil
-                    :foreground "blue" :weight 'bold)
-(custom-set-variables
- '(anzu-mode-lighter "")
- '(anzu-deactivate-region t)
- '(anzu-search-threshold 1000)
- '(anzu-use-migemo t))
-(global-set-key (kbd "C-c r") 'anzu-query-replace-regexp)
 
 ;; auto-save-buffer
 (setq auto-save-buffers-enhanced-interval 1)
@@ -57,8 +43,6 @@
 ;; duplicate-thing
 (global-set-key (kbd "C-,") 'duplicate-thing)
 (global-set-key (kbd "C-c ,") 'duplicate-thing)
-
-(global-ace-isearch-mode +1)
 
 
 ;;--- function ---

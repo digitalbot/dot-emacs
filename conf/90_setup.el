@@ -73,8 +73,8 @@
 
 ;; bidi issue
 (if (> (string-to-number emacs-version) 24)
-    (setq-default bidi-display-reordering nil bidi-paragraph-direction (quote left-to-right))
-  )
+    (setq-default bidi-display-reordering nil
+                  bidi-paragraph-direction (quote left-to-right)))
 
 (when ns-p
   ;; inline-patch skk使ってないから意味ないかも
@@ -100,6 +100,5 @@
   (wrap-function-to-control-ime 'read-from-minibuffer nil nil)
   (wrap-function-to-control-ime 'y-or-n-p nil nil)
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
-  (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
-  )
+  (wrap-function-to-control-ime 'map-y-or-n-p nil nil))
 
