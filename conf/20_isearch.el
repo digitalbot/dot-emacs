@@ -16,7 +16,3 @@
 
 ;; ace-isearch
 (global-ace-isearch-mode +1)
-(eval-after-load "migemo"
-  (define-key isearch-mode-map (kbd "C-e") 'migem-isearch-toggle-migemo))
-
-

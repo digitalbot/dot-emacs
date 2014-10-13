@@ -16,5 +16,6 @@
   (setq migemo-coding-system 'utf-8)
   (setq migemo-isearch-min-length 2)
   (load-library "migemo")
-  (migemo-init))
+  (migemo-init)
+  (define-key isearch-mode-map (kbd "C-e") 'migemo-isearch-toggle-migemo))
 
