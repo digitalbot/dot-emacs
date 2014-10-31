@@ -37,6 +37,9 @@
 (global-set-key (kbd "C-,") 'duplicate-thing)
 (global-set-key (kbd "C-c ,") 'duplicate-thing)
 
+;; comment-dwim-2
+(global-set-key (kbd "M-;") 'comment-dwim-2)
+
 
 ;;--- function ---
 (defun load-dot-emacs()
