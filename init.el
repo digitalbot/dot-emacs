@@ -57,6 +57,7 @@
       smart-newline smartparens smartrep smooth-scroll
       undohist undo-tree point-undo
       yascroll yasnippet
+      comment-dwim-2
       ))
   (let ((not-installed
          (loop for package in my-package-list
