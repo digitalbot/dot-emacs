@@ -1,0 +1,7 @@
+#+TITLE: todo.txt
+#+AUTHOR: Kosuke NAKAMURA
+#+EMAIL: k7-nakamura@nri.co.jp
+#+LANGUAGE: ja
+#+OPTIONS: toc:2 ^:nil num:nil
+
+* orgをbuilt-inじゃないの入れる
