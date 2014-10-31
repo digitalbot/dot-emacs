@@ -40,7 +40,7 @@
       clojure-mode cider clojure-cheatsheet clojure-snippets slime paredit
       auto-complete ac-cider ac-python ac-slime go-autocomplete
       c-eldoc codic google-translate
-      el-spec el-spy elscreen
+      el-spec el-spy elscreen org org-ac
       magit git-gutter gitconfig-mode gitignore-mode
       go-mode go-snippets
       migemo anzu gtags fill-column-indicator ag wgrep all-ext

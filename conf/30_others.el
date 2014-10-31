@@ -10,6 +10,7 @@
 (setq org-startup-truncated nil)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w)" "WIP(i)" "DONE(d)")))
+(org-ac/config-default)
 
 
 ;; markdown-mode
@@ -23,8 +24,7 @@
   (if (and (executable-find "iconv") (executable-find "pandoc"))
       (setq markdown-command "iconv -f sjis -t utf-8 | pandoc -s -S -p --template=html-github -f markdown_github")
     (setq markdown-command "perl C:/strawberry/perl/site/bin/Markdown.pl"))
-  (setenv "LC_ALL" "C")
-  )
+  (setenv "LC_ALL" "C"))
 
 
 ;; paredit
