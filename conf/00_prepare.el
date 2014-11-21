@@ -14,8 +14,7 @@
 (defun x->bool (elt) (not (not elt)))
 
 ;; emacs-version predicates
-(setq emacs22-p (= 22 emacs-major-version)
-      emacs23-p (= 23 emacs-major-version)
+(setq emacs23-p (= 23 emacs-major-version)
       emacs23.0-p (string-match "^23\\.0.*" emacs-version)
       emacs23.1-p (string-match "^23\\.1.*" emacs-version)
       emacs23.2-p (string-match "^23\\.2.*" emacs-version)

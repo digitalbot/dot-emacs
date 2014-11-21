@@ -25,6 +25,9 @@
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
+;; for older byte-compiled file issue
+(when (version<= "24.4" emacs-version)
+  (setq load-prefer-newer t))
 
 ;; package
 (when (require 'package nil t)
