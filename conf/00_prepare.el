@@ -14,15 +14,20 @@
 (defun x->bool (elt) (not (not elt)))
 
 ;; emacs-version predicates
-(setq emacs22-p (string-match "^22" emacs-version)
-      emacs23-p (string-match "^23" emacs-version)
-      emacs23.0-p (string-match "^23\.0" emacs-version)
-      emacs23.1-p (string-match "^23\.1" emacs-version)
-      emacs23.2-p (string-match "^23\.2" emacs-version))
+(setq emacs22-p (= 22 emacs-major-version)
+      emacs23-p (= 23 emacs-major-version)
+      emacs23.0-p (string-match "^23\\.0.*" emacs-version)
+      emacs23.1-p (string-match "^23\\.1.*" emacs-version)
+      emacs23.2-p (string-match "^23\\.2.*" emacs-version)
+      emacs24-p (= 24 emacs-major-version)
+      emacs24.3-p (string-match "^24\\.3.*" emacs-version)
+      emacs24.4-p (string-match "^24\\.4.*" emacs-version))
 
 ;; system-type predicates
 (setq darwin-p  (eq system-type 'darwin)
-      ns-p      (eq window-system 'ns)
+      ns-p      (if emacs24.4-p
+                    (or (eq window-system 'ns) (eq window-system 'mac))
+                  (eq window-system 'ns))
       carbon-p  (eq window-system 'mac)
       linux-p   (eq system-type 'gnu/linux)
       colinux-p (when linux-p

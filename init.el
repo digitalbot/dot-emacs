@@ -20,7 +20,7 @@
         make-local))
 
 ;; load-path
-(setq load-path (cons user-emacs-directory load-path))
+;;(setq load-path (cons user-emacs-directory load-path))
 (let ((default-directory (concat user-emacs-directory "site-lisp")))
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
@@ -28,6 +28,8 @@
 
 ;; package
 (when (require 'package nil t)
+  (when (version<= "24.4" emacs-version)
+    (fset 'package-desc-vers 'package--ac-desc-version))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (package-initialize)

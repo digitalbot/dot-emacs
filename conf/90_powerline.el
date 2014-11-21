@@ -19,6 +19,7 @@
 (eval-after-load "highlight-parentheses"
   '(diminish 'highlight-parentheses-mode))
 
+(require 'powerline)
 (set-face-attribute 'mode-line nil
                     :foreground "#639"
                     :background "#a6e"
@@ -35,3 +36,4 @@
                     :inherit 'mode-line)
 
 (powerline-default-theme)
+(powerline-reset)
