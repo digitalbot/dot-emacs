@@ -17,6 +17,7 @@ image-dired/
 server/
 eshell/lastdir
 conf/99_private.el
+srecode-map.el
 *.elc
 
 *~

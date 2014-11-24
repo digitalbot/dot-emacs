@@ -1,7 +1,7 @@
 ;;;----------------------------------------
 ;;; init
 ;;;----------------------------------------
-
+;;; Code:
 
 ;; language
 (set-language-environment 'japanese)
@@ -56,7 +56,7 @@
       mykie key-combo ace-jump-mode ace-isearch
       multiple-cursors thingopt duplicate-thing expand-region
       open-junk-file quickrun
-      popwin pos-tip
+      popwin pos-tip flycheck
       recentf-ext savekill session
       shell-pop multi-term eshell-prompt-extras
       smart-newline smartparens smartrep smooth-scroll
