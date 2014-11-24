@@ -30,6 +30,7 @@
 ;; auto-save-buffer
 (setq auto-save-buffers-enhanced-interval 1)
 (auto-save-buffers-enhanced t)
+(global-set-key (kbd "C-x a s") 'auto-save-buffers-enhanced-toggle-activity)
 
 (require 'savekill)
 
