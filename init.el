@@ -1,7 +1,7 @@
 ;;;----------------------------------------
 ;;; init
 ;;;----------------------------------------
-
+;;; Code:
 
 ;; language
 (set-language-environment 'japanese)
@@ -20,14 +20,19 @@
         make-local))
 
 ;; load-path
-(setq load-path (cons user-emacs-directory load-path))
+;;(setq load-path (cons user-emacs-directory load-path))
 (let ((default-directory (concat user-emacs-directory "site-lisp")))
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
+;; for older byte-compiled file issue
+(when (version<= "24.4" emacs-version)
+  (setq load-prefer-newer t))
 
 ;; package
 (when (require 'package nil t)
+  (when (version<= "24.4" emacs-version)
+    (fset 'package-desc-vers 'package--ac-desc-version))
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
   (package-initialize)
@@ -51,13 +56,14 @@
       mykie key-combo ace-jump-mode ace-isearch
       multiple-cursors thingopt duplicate-thing expand-region
       open-junk-file quickrun
-      popwin pos-tip
+      popwin pos-tip flycheck
       recentf-ext savekill session
       shell-pop multi-term eshell-prompt-extras
       smart-newline smartparens smartrep smooth-scroll
       undohist undo-tree point-undo
       yascroll yasnippet
       comment-dwim-2
+      eww-lnum
       ))
   (let ((not-installed
          (loop for package in my-package-list

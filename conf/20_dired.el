@@ -8,3 +8,5 @@
 (setq dired-dwim-target t)
 (setq dired-recursive-copies 'always)
 (setq dired-isearch-filenames t)
+(define-key dired-mode-map (kbd "(") 'dired-hide-details-mode)
+(define-key dired-mode-map (kbd ")") 'dired-hide-details-mode)

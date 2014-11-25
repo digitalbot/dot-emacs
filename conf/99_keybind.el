@@ -23,6 +23,8 @@
 (global-set-key (kbd "C-q C-d") 'describe-bindings)
 (global-set-key (kbd "C-q C-a") 'mark-whole-buffer)
 
+(global-set-key (kbd "M-SPC") 'cycle-spacing)
+
 ;; tab key
 (setq c-tab-always-indent t)
 (setq-default indent-tabs-mode nil)

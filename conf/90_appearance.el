@@ -23,7 +23,7 @@
     (require 'save-frame-posize)
     (set-face-attribute 'default nil
                         :family "Ricty"
-                        :height 150)
+                        :height 160)
     (set-fontset-font
      (frame-parameter nil 'font)
      'japanese-jisx0208
@@ -46,8 +46,7 @@
 ;; theme
 (if window-system
     (load-theme 'manoj-dark t)
-  (load-theme 'wombat t)
-  )
+  (load-theme 'wombat t))
 
 ;; auto highlight
 (global-auto-highlight-symbol-mode t)
