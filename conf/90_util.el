@@ -29,6 +29,7 @@
 
 ;; auto-save-buffer
 (setq auto-save-buffers-enhanced-interval 1)
+(setq auto-save-buffers-enhanced-quiet-save-p t)
 (auto-save-buffers-enhanced t)
 (global-set-key (kbd "C-x a s") 'auto-save-buffers-enhanced-toggle-activity)
 

@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        ac-pcmp/self-insert-command-with-ac-start
         c-electric-delete-forward
         c-electric-semi&comma
         c-electric-slash

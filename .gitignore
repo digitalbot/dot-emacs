@@ -7,6 +7,7 @@ scratch-log
 scratch-log-prev
 tramp
 kill-ring-saved.el
+eww-bookmarks
 url/
 elpa/
 undohist/
