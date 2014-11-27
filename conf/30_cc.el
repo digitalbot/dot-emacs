@@ -15,7 +15,8 @@
              (setq-default tab-width 4)
              (semantic-mode 1)
              (setq ac-sources (append ac-sources '(ac-source-semantic)))
-             (add-to-list 'ac-sources 'ac-source-system-header-files)
+             (when (not windows-p)
+               (add-to-list 'ac-sources 'ac-source-system-header-files))
              ))
 
 
