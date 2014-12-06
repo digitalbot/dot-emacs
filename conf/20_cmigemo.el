@@ -17,5 +17,5 @@
   (setq migemo-isearch-min-length 2)
   (load-library "migemo")
   (migemo-init)
-  (define-key isearch-mode-map (kbd "C-e") 'migemo-isearch-toggle-migemo))
+  (define-key isearch-mode-map (kbd "M-m") 'migemo-isearch-toggle-migemo))
 
