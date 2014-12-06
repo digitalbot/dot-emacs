@@ -18,7 +18,7 @@
 ;; semantic
 ;; (require 'semantic)
 (setq semantic-imenu-summary-function
-      (lambda (tag)
+      '(lambda (tag)
         (semantic-format-tag-summarize tag nil t)))
 (defun my-semantic-hook ()
   (imenu-add-to-menubar "TAGS"))

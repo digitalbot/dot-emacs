@@ -37,7 +37,7 @@
   (setq multi-term-program shell-file-name)
 
   ;; tab issue
-  (add-hook 'term-mode-hook (lambda()
+  (add-hook 'term-mode-hook '(lambda()
                               (yas-minor-mode -1)))
 
   ;; term key bind

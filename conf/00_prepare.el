@@ -11,6 +11,12 @@
 
 (require 'generic-x)
 
+;; for c-mode
+(defun my/c-add-hook (func)
+  (add-hook 'c-mode-hook func)
+  (add-hook 'c++-mode-hook func)
+  (add-hook 'objc-mode-hook func))
+
 (defun x->bool (elt) (not (not elt)))
 
 ;; emacs-version predicates

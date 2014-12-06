@@ -21,3 +21,7 @@
 (add-hook 'java-mode-hook 'ajc-java-complete-mode)
 
 
+;; keybind
+(add-hook 'java-mode-hook
+          '(lambda ()
+             (setq c-basic-offset 4)))

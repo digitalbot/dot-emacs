@@ -19,6 +19,7 @@ server/
 eshell/lastdir
 conf/99_private.el
 srecode-map.el
+.python-environments/
 *.elc
 
 *~

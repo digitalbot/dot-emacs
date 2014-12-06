@@ -52,13 +52,11 @@
 
 
 (add-hook 'c-mode-common-hook
-          (lambda ()
-            (key-combo-define-local (kbd "/") '(" / " "// " "/* `!!' */" "/*\n* `!!'\n*/" "/"))
-          ))
+          '(lambda ()
+            (key-combo-define-local (kbd "/") '(" / " "// " "/* `!!' */" "/*\n* `!!'\n*/" "/"))))
 
 (add-hook 'cperl-mode-hook
-          (lambda ()
+          '(lambda ()
             (key-combo-define-local (kbd "W") '("W" "warn Dumper `!!';" "WW"))
-            (key-combo-define-local (kbd ".=") " .= ")
-          ))
+            (key-combo-define-local (kbd ".=") " .= ")))
 

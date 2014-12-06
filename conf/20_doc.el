@@ -12,8 +12,7 @@
 
 ;; c-eldoc
 (load "c-eldoc")
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (set (make-local-variable 'eldoc-idle-delay) 0.2)
-            (c-turn-on-eldoc-mode)
-            ))
+(my/c-add-hook
+ '(lambda ()
+   (set (make-local-variable 'eldoc-idle-delay) 0.2)
+   (c-turn-on-eldoc-mode)))

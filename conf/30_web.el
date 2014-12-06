@@ -48,7 +48,7 @@
 (add-hook 'html-mode-hook 'emmet-mode)
 (add-hook 'css-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
-(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+(add-hook 'emmet-mode-hook '(lambda () (setq emmet-indentation 2)))
 (define-key emmet-mode-keymap (kbd "C-q m") 'emmet-expand-yas)
 (define-key emmet-mode-keymap (kbd "C-q C-m") 'emmet-expand-line)
 (define-key emmet-preview-keymap (kbd "C-q C-m") 'emmet-preview-accept)

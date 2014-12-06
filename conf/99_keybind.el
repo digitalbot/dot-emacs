@@ -30,9 +30,7 @@
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq indent-line-function 'indent-relative-maybe)
-(add-hook 'java-mode-hook
-	  (lambda ()
-	    (setq c-basic-offset 4)))
+
 
 ;; dmacro
 (progn

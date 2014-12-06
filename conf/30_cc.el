@@ -7,17 +7,18 @@
 ;;(c-set-offset 'statement-count 'c-lineup-math)
 (c-set-offset 'case-label '+)
 
+(my/c-add-hook '(lambda ()
+                  (c-set-style "cc-mode")
+                  (when (not windows-p)
+                    (add-to-list 'ac-sources 'ac-source-system-header-files))))
+
 ;; hook
 (add-hook 'c-mode-common-hook
           '(lambda()
-             (c-set-style "cc-mode")
              (setq-default indent-tabs-mode nil)
              (setq-default tab-width 4)
              (semantic-mode 1)
-             (setq ac-sources (append ac-sources '(ac-source-semantic)))
-             (when (not windows-p)
-               (add-to-list 'ac-sources 'ac-source-system-header-files))
-             ))
+             (setq ac-sources (append ac-sources '(ac-source-semantic)))))
 
 
 ;; 自動判別
@@ -65,8 +66,7 @@
                   (when (eolp)
                     (insert ">\n"))))))
 
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (define-key c-mode-base-map (kbd "C-c o") 'ff-find-other-file)))
-  )
+  (my/c-add-hook
+   '(lambda ()
+      (define-key c-mode-base-map (kbd "C-c o") 'ff-find-other-file))))
 
