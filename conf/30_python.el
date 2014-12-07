@@ -12,34 +12,34 @@
              (setq indent-tabs-mode 1)
              (setq indent-level 4)
              (setq python-indent 4)
+             (setq python-indent-offset 4)
+             (setq-default tab-width 4)
              (setq tab-width 4)
              (flycheck-mode 1)
              ))
 
 (add-hook 'python-mode-hook 'jedi:ac-setup)
-;;(define-key python-mode-map (kbd "<C-tab>") 'jedi:complete)
-(define-key python-mode-map (kbd "TAB") 'jedi:complete)
+(define-key python-mode-map (kbd "<C-tab>") 'jedi:complete)
 
 ;; from emacs23 python.el
 (defun python-symbol-completions (symbol)
   "Return a list of completions of the string SYMBOL from Python process.
-The list is sorted.
-Uses `python-imports' to load modules against which to complete.\"
-
+   The list is sorted.
+   Uses `python-imports' to load modules against which to complete."
   (when (stringp symbol)
     (let ((completions
-   (condition-case ()
-       (car (read-from-string
-     (python-send-receive
-      (format \"emacs.complete(%S,%s)\"
-      (substring-no-properties symbol)
-      python-imports))))
-     (error nil))))
+           (condition-case ()
+               (car (read-from-string
+                     (python-shell-internal-send-string
+                      (format "emacs.complete(%S,%s)"
+                              (substring-no-properties symbol)
+                              python-imports))))
+             (error nil))))
       (sort
        ;; We can get duplicates from the above -- don't know why.
        (delete-dups completions)
        #'string<))))
-'`")
+
 
 ;; python.el
 (defun my:ensure-python.el (&optional branch overwrite)
