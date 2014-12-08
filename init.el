@@ -19,12 +19,6 @@
         interactive-only
         make-local))
 
-;; load-path
-;;(setq load-path (cons user-emacs-directory load-path))
-(let ((default-directory (concat user-emacs-directory "site-lisp")))
-  (setq load-path (cons default-directory load-path))
-  (normal-top-level-add-subdirs-to-load-path))
-
 ;; for older byte-compiled file issue
 (when (version<= "24.4" emacs-version)
   (setq load-prefer-newer t))
@@ -76,6 +70,11 @@
         (package-install package))))
   )
 
+;; load-path
+;;(setq load-path (cons user-emacs-directory load-path))
+(let ((default-directory (concat user-emacs-directory "site-lisp")))
+  (setq load-path (cons default-directory load-path))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; init-loader
 (if (require 'init-loader nil t)

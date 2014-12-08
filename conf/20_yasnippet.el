@@ -4,7 +4,7 @@
 
 (require 'yasnippet)
 (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"))
+      (list (concat user-emacs-directory "snippets")))
 
 (setq yas-key-syntaxes (nreverse yas-key-syntaxes))
 (custom-set-variables '(yas-trigger-key "TAB"))

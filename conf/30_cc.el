@@ -10,6 +10,8 @@
 (my/c-add-hook '(lambda ()
                   (c-set-style "cc-mode")
                   (when (not windows-p)
+                    (semantic-mode 1)
+                    (add-to-list 'ac-sources 'ac-source-semantic)
                     (add-to-list 'ac-sources 'ac-source-system-header-files))))
 
 ;; hook
@@ -18,8 +20,7 @@
              (setq-default indent-tabs-mode nil)
              (setq-default tab-width 4)
              (setq c-basic-offset 4)
-             (semantic-mode 1)
-             (setq ac-sources (append ac-sources '(ac-source-semantic)))))
+             ))
 
 
 ;; 自動判別
