@@ -32,3 +32,5 @@ if you do not have `~/.malabar_mode/classpath`
 ```
 $ mvn -e -X -U classpath.pom dependency:build-classpath
 ```
+
+and for python, `M-x jedi:install-server`
