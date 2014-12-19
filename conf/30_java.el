@@ -2,6 +2,7 @@
 ;;; java
 ;;;----------------------------------------
 
+(require 'cl)
 (require 'cedet)
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
                                   global-semanticdb-minor-mode
