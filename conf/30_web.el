@@ -14,7 +14,6 @@
 (add-hook 'web-mode-hook
           '(lambda()
              (auto-complete-mode t)
-             
              (local-unset-key (kbd "C-;"))
              (setq web-mode-script-padding 0)
              (setq web-mode-block-padding 0)
