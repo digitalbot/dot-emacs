@@ -29,7 +29,6 @@
             (auto-complete-mode 1)
             (setq ac-auto-start nil)
             (local-set-key (kbd "C-,") 'helm-eshell-history)
-            (local-set-key (kbd "C-q C-l") 'ehsell/clear)
             ;; (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)
             ;; (define-key eshell-mode-map (kbd "M-n") 'helm-esh-pcomplete)
             ;; (define-key eshell-mode-map (kbd "C-a") 'eshell-bol)
@@ -37,12 +36,14 @@
 
 (setq eshell-ask-to-save-history 'always)
 (setq eshell-hist-ignoredups t)
+(setq eshell-last-dir-ring-size 1024)
+
+(require 'em-prompt)
+(set-face-foreground 'eshell-prompt-face "violet")
+
 (when nt-p
   (custom-set-variables '(eshell-hosts-file "c:/Windows/System32/drivers/etc/hosts")))
 
-(require 'eshell-autojump)
-(defalias 'eshell/z 'eshell/j)
-
-(require 'em-prompt)
-(set-face-foreground 'eshell-prompt-face "SpringGreen")
-
+(eval-after-load 'eshell
+  '(progn (require 'eshell-autojump nil t)
+          (defalias 'eshell/z 'eshell/j)))
