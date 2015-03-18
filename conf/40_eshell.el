@@ -8,6 +8,19 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
+(defun eshell/less (&rest args)                    
+  "Invoke `view-file' on the file.                 
+\"less +42 foo\" also goes to line 42 in the buffer,"
+  (interactive)                                    
+  (while args                                      
+    (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
+	(let* ((line (string-to-number (match-strig1 (pop args))))
+	       (file (pop args)))                  
+	  (view-file file)                         
+	  (goto-line line))                        
+      (view-file (pop args)))))
+
+
 (require 'auto-complete)
 (require 'pcomplete)
 (add-to-list 'ac-modes 'eshell-mode)
@@ -35,15 +48,33 @@
             ))
 
 (setq eshell-ask-to-save-history 'always)
-(setq eshell-hist-ignoredups t)
+(setq eshell-cmpl-ignore-case t)
+(setq eshell-hist-ignoredups nil)
 (setq eshell-last-dir-ring-size 1024)
 
 (require 'em-prompt)
-(set-face-foreground 'eshell-prompt-face "violet")
+(custom-set-faces
+ '(eshell-prompt-face ((t (:foreground "violet" :bold nil)))))
 
 (when nt-p
-  (custom-set-variables '(eshell-hosts-file "c:/Windows/System32/drivers/etc/hosts")))
+  (custom-set-variables
+   '(eshell-hosts-file "c:/Windows/System32/drivers/etc/hosts")))
 
 (eval-after-load 'eshell
   '(progn (require 'eshell-autojump nil t)
           (defalias 'eshell/z 'eshell/j)))
+
+
+;; エスケープシーケンスを処理
+(autoload 'ansi-color-for-comint-mode-on "ansi-color"
+  "Set `ansi-color-for-comint-mode' to t." t)
+
+(add-hook 'eshell-load-hook 'ansi-color-for-comint-mode-on)
+
+(require 'ansi-color)
+
+(defun eshell-handle-ansi-color ()
+  (ansi-color-apply-on-region eshell-last-output-start
+                              eshell-last-output-end))
+
+(add-to-list 'eshell-output-filter-functions 'eshell-handle-ansi-color)
