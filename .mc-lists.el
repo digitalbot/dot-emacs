@@ -14,6 +14,7 @@
         cua-delete-region
         cua-paste
         electric-newline-and-maybe-indent
+        elscreen-previous
         eshell-bol
         markdown-cycle
         mouse-buffer-menu

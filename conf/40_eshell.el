@@ -8,18 +8,18 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
-(defun eshell/less (&rest args)                    
-  "Invoke `view-file' on the file.                 
+(defun eshell/less (&rest args)
+  "Invoke `view-file' on the file.
 \"less +42 foo\" also goes to line 42 in the buffer,"
-  (interactive)                                    
-  (while args                                      
+  (interactive)
+  (split-window-vertically)
+  (while args
     (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
-	(let* ((line (string-to-number (match-strig1 (pop args))))
-	       (file (pop args)))                  
-	  (view-file file)                         
-	  (goto-line line))                        
-      (view-file (pop args)))))
-
+	(let* ((line (string-to-number (match-string 1 (pop args))))
+	       (file (pop args)))
+	  (view-file-other-window file)
+	  (goto-line line))
+      (view-file-other-window (pop args)))))
 
 (require 'auto-complete)
 (require 'pcomplete)
@@ -40,7 +40,7 @@
             (smartparens-mode 1)
             (my-ac-eshell-mode)
             (auto-complete-mode 1)
-            (setq ac-auto-start nil)
+            (set (make-local-variable 'ac-auto-start) nil)
             (local-set-key (kbd "C-,") 'helm-eshell-history)
             ;; (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)
             ;; (define-key eshell-mode-map (kbd "M-n") 'helm-esh-pcomplete)
