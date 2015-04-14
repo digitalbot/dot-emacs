@@ -15,6 +15,13 @@
 
 
 ;; ace-isearch
+(require 'helm-swoop)
 (global-ace-isearch-mode +1)
-(setq ace-isearch-input-idle-delay 0.8)
-(setq ace-isearch-input-length 8)
+(custom-set-variables
+ '(ace-isearch-use-ace-jump 'printing-char)
+ '(ace-isearch-input-idle-delay 0.8)
+ '(ace-isearch-input-length 12))
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)

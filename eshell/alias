@@ -1,8 +1,11 @@
-alias eff elscreen-find-file $1
-alias ff find-file $1
-alias ffo find-file-other-window $1
-alias ll ls -l
-alias up cd ../
-alias jv javac $1.java && java $1
-alias desk cd /Users/kosuke/Desktop
+alias ed elscreen-dired $1
+alias d dired $1
 alias kosuke cd c:/Users/kosuke/
+alias desk cd c:/Users/kosuke/Desktop
+alias jv javac $1.java && java $1
+alias up cd ../
+alias upp cd ../../
+alias ll ls -l $*
+alias ffo find-file-other-window $1
+alias ff find-file $1
+alias eff elscreen-find-file $1

@@ -60,7 +60,7 @@
       undohist undo-tree point-undo
       yascroll yasnippet
       comment-dwim-2
-      eww-lnum
+      eww-lnum dired-filter
       ))
   (let ((not-installed
          (loop for package in my-package-list
