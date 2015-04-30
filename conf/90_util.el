@@ -20,13 +20,6 @@
 ;; unique
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; recentf
-(setq recentf-auto-cleanup 'never)
-(recentf-mode 1)
-;; recentf-ext
-(setq recentf-max-menu-items 8000)
-(setq recentf-max-saved-items 10000)
-
 ;; auto-save-buffer
 (setq auto-save-buffers-enhanced-interval 1)
 (setq auto-save-buffers-enhanced-quiet-save-p t)
