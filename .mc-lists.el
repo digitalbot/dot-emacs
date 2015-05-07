@@ -8,6 +8,7 @@
         c-electric-paren
         c-electric-semi&comma
         c-electric-slash
+        comint-delchar-or-maybe-eof
         cperl-electric-paren
         cperl-electric-rparen
         cperl-electric-semi

@@ -3,29 +3,6 @@
 ;;;----------------------------------------
 
 
-(require 'cl-lib)
-
-;; no start-up, back-upa
-(setq inhibit-startup-message t)
-(setq make-backup-file nil)
-(setq auto-save-default nil)
-(setq backup-inhibited t)
-
-;; yes or no to y or n
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; minibuffer
-(savehist-mode t)
-(setq history-length 3500)
-
-;; no dialog-box use minibuffer
-(setq use-dialog-box nil)
-
-(iswitchb-mode 1)
-
-(savehist-mode t)
-(setq history-length 3500)
-
 ;; auto-revert
 (setq global-auto-revert-mode t)
 
@@ -48,9 +25,6 @@
 ;; (setq visual-line-fringe-indicators '(t t))
 ;; (global-visual-line-mode)
 
-
-(icomplete-mode 1)
-
 ;; partial-completion
 (setq partial-completion-mode 1)
 
@@ -70,25 +44,6 @@
 (setq eval-expression-print-level nil
       eval-expression-print-length nil
       eval-expression-debug-on-error nil)
-
-;; bidi issue
-(if (> (string-to-number emacs-version) 24)
-    (setq-default bidi-display-reordering nil
-                  bidi-paragraph-direction (quote left-to-right)))
-
-(when ns-p
-  ;; inline-patch skk使ってないから意味ないかも
-  (when (or (= emacs-major-version 23) (= emacs-major-version 24))
-    ;;(setq default-input-method "MacOSX")
-    (mac-add-key-passed-to-system 'shift))
-  )
-
-;; for error
-(setq max-specpdl-size 5000)
-(setq max-lisp-eval-depth 2000)
-
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
 
 (when windows-p
   (setq default-input-method "W32-IME")
