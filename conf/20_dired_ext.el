@@ -35,14 +35,13 @@
       (os-open-command file))))
 
 ;; dired で E 押下時に、開いているディレクトリを OS で直接開く
-(define-key dired-mode-map (kbd "E")
-  (lambda ()
-    (interactive)
-    (if windows-p
-        (shell-command
-         (concat "explorer ."))
-      (os-open-command (dired-current-directory)))))
-
+(defun os-open-dir ()
+  (interactive)
+  (if windows-p
+      (shell-command "explorer .")
+    (os-open-command (dired-current-directory))))
+(define-key dired-mode-map (kbd "E") 'os-open-dir)
+(global-set-key (kbd "C-q e") 'os-open-dir)
 
 ;; OS で起動したいファイルの拡張子一覧
 (setq os-open-file-suffixes '("doc" "docx"
@@ -69,8 +68,7 @@
                  (os-open-command-name))
             t))))
 
-;; dired でファイルを f で開く際に os-open-file-suffixes リストに指定してあるサフィックスのファイルは、
-;; OS で直接起動する
+;; os-open-file-suffixesのファイルをOSで直接起動する
 (defadvice find-file (around ad-find-file-os-open-command-setup activate)
   (let ((file (ad-get-arg 0)))
     (cond ((os-open-file-p file)
