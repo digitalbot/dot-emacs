@@ -59,27 +59,48 @@
 (setq helm-c-yas-space-match-any-greedy t)
 
 
-;; cmigemo
-(eval-after-load "migemo"
-  '(progn
-     (setq helm-use-migemo t)
-     ;; 候補が表示されないときがあるので
-     ;; migemoらないように設定
-     (defadvice helm-c-apropos
-       (around ad-helm-apropos activate)
-       (let ((helm-use-migemo nil))
-         ad-do-it))
-     (defadvice helm-M-x
-       (around ad-helm-M-x activate)
-       (let ((helm-use-migemo nil))
-         ad-do-it))
-     (defadvice helm-swoop
-       (around ad-helm-swoop activate)
-       (let ((helm-use-migemo nil))
-         ad-do-it))))
-
 
 ;; helm ag
 (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 (setq helm-ag-command-option "--all-text")
 (setq helm-ag-thing-at-point 'symbol)
+
+
+;; cmigemo
+(with-eval-after-load "migemo"
+  (require 'helm-migemo)
+  (eval-after-load "helm-migemo"
+    '(defun helm-compile-source--candidates-in-buffer (source)
+       (helm-aif (assoc 'candidates-in-buffer source)
+           (append source
+                   `((candidates
+                      . ,(or (cdr it)
+                             (lambda ()
+                               ;; Do not use `source' because other plugins
+                               ;; (such as helm-migemo) may change it
+                               (helm-candidates-in-buffer
+                                (helm-get-current-source)))))
+                     (volatile) (match identity)))
+         source)))
+  (setq helm-use-migemo t)
+  (with-eval-after-load 'helm-show-kill-ring
+    '(helm-migemize-command helm-show-kill-ring))
+  ;; 候補が表示されないときがあるので
+  ;; migemoらないように設定
+  (defadvice helm-for-files  ;;こいつはエラー対応
+      (around ad-helm-for-files activate)
+              (let ((helm-use-migemo nil))
+                ad-do-it))
+  (defadvice helm-c-apropos
+      (around ad-helm-apropos activate)
+    (let ((helm-use-migemo nil))
+      ad-do-it))
+  (defadvice helm-M-x
+      (around ad-helm-M-x activate)
+    (let ((helm-use-migemo nil))
+      ad-do-it))
+  (defadvice helm-swoop
+      (around ad-helm-swoop activate)
+    (let ((helm-use-migemo nil))
+      ad-do-it)))
+
