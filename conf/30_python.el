@@ -9,6 +9,9 @@
 ;; hook
 (add-hook 'python-mode-hook
           '(lambda ()
+             (setq python-shell-interpreter "ipython")
+             (setq python-shell-interpreter-args "-i")
+             (setq python-shell-exec-path (executable-find "ipython"))
              (setq indent-tabs-mode 1)
              (setq indent-level 4)
              (setq python-indent 4)
@@ -69,5 +72,7 @@ latest version."
       destination)))
 
 ;;(my:ensure-python.el)
+
+
 
 

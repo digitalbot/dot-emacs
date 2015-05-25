@@ -2,8 +2,10 @@
 ;;; tramp
 ;;;----------------------------------------
 
+(if windows-p
+    (setq tramp-default-method "plink")
+  (setq tramp-default-method "ssh"))
 
-(setq tramp-default-method "ssh")
 
 ;; sudo
 (add-to-list 'tramp-default-proxies-alist
