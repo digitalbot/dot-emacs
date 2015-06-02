@@ -24,6 +24,9 @@
 (setq auto-save-buffers-enhanced-interval 1)
 (setq auto-save-buffers-enhanced-quiet-save-p t)
 (auto-save-buffers-enhanced t)
+(setq auto-save-buffers-enhanced-save-scratch-buffer-to-file-p t)
+(setq auto-save-buffers-enhanced-file-related-with-scratch-buffer
+      (locate-user-emacs-file "scratch"))
 (global-set-key (kbd "C-x a s") 'auto-save-buffers-enhanced-toggle-activity)
 
 (require 'savekill)

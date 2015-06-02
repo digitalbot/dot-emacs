@@ -29,7 +29,7 @@ Without an argument, list the ten most common directories.
 With a positive integer argument, list the n most common directories.
 Otherwise, call `eshell/cd' with the result."
   (setq args (eshell-flatten-list args))
-  (let ((arg (or (car args) 10))
+  (let ((arg (or (car args) 25))
 	(map (make-hash-table :test 'equal))
 	(case-fold-search (eshell-under-windows-p))
 	candidates
