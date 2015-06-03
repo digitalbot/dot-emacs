@@ -2,6 +2,7 @@
 ;;; pos-tip
 ;;;----------------------------------------
 
+
 (require 'pos-tip)
 (require 'popup-pos-tip)
 (defadvice popup-tip

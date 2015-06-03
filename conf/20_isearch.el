@@ -2,6 +2,7 @@
 ;;; isearch
 ;;;----------------------------------------
 
+
 ;; anzu
 (global-anzu-mode +1)
 (set-face-attribute 'anzu-mode-line nil

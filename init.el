@@ -59,7 +59,7 @@
       smart-newline smartparens smartrep smooth-scroll
       undohist undo-tree point-undo
       yascroll yasnippet
-      comment-dwim-2
+      comment-dwim-2 hydra
       eww-lnum dired-filter minimap
       ))
   (let ((not-installed

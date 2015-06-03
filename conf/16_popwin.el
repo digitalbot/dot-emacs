@@ -2,7 +2,7 @@
 ;;; popwin
 ;;;----------------------------------------
 
-;; popwin
+
 (require 'popwin)
 (popwin-mode 1)
 (define-key global-map (kbd "C-x p") 'popwin:display-last-buffer)

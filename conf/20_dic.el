@@ -2,6 +2,7 @@
 ;;; dictionary
 ;;;----------------------------------------
 
+
 ;; google-translate
 (require 'google-translate)
 (require 'google-translate-smooth-ui)
