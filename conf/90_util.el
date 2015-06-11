@@ -38,6 +38,10 @@
 ;; comment-dwim-2
 (global-set-key (kbd "M-;") 'comment-dwim-2)
 
+(require 'ediff)
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 
 ;;--- function ---
 (defun load-dot-emacs()
@@ -62,3 +66,16 @@
   (other-window 1))
 (global-set-key (kbd "C-o") 'other-window-or-split)
 
+(defun my/get-curernt-path ()
+    (if (equal major-mode 'dired-mode)
+	default-directory
+	(buffer-file-name)))
+
+(defun my/copy-current-path ()                                                         
+  (interactive)
+  (let ((fPath (my/get-curernt-path)))
+    (when fPath
+      (message "stored path: %s" fPath)
+      (kill-new (file-truename fPath)))))
+
+(global-set-key (kbd "C-c 0") 'my/copy-current-path)

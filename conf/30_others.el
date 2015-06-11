@@ -12,6 +12,7 @@
       '((sequence "TODO(t)" "WAIT(w)" "WIP(i)" "DONE(d)")))
 (org-ac/config-default)
 
+;; (require 'os-gfm)
 
 ;; markdown-mode
 (setq auto-mode-alist

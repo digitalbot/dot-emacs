@@ -23,6 +23,8 @@
 
 
 ;; keybind
-(add-hook 'java-mode-hook
-          '(lambda ()
-             (setq c-basic-offset 4)))
+(defun my-java-mode-hooks()
+  (setq c-basic-offset 4)
+  (hs-minor-mode 1))
+(add-hook 'java-mode-hook 'my-java-mode-hooks)
+(add-hook 'malabar-mode-hook 'my-java-mode-hooks)

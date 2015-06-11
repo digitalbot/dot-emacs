@@ -60,7 +60,7 @@
       undohist undo-tree point-undo
       yascroll yasnippet
       comment-dwim-2 hydra
-      eww-lnum dired-filter minimap
+      dired-filter minimap ace-link
       ))
   (let ((not-installed
          (loop for package in my-package-list
