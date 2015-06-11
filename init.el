@@ -39,12 +39,12 @@
       auto-async-byte-compile auto-highlight-symbol auto-save-buffers-enhanced
       init-loader exec-path-from-shell diminish
       clojure-mode cider clojure-cheatsheet clojure-snippets slime paredit
-      auto-complete ac-cider ac-slime go-autocomplete ac-helm ac-python
+      auto-complete ac-cider ac-slime go-autocomplete ac-helm ;ac-python
       c-eldoc codic google-translate
       el-spec el-spy elscreen org org-ac
       magit git-gutter gitconfig-mode gitignore-mode
       go-mode go-snippets
-      migemo anzu fill-column-indicator ag wgrep wgrep-ag all-ext gtags 
+      migemo anzu fill-column-indicator ag wgrep wgrep-ag all-ext ;gtags
       helm helm-ag helm-c-yasnippet helm-descbinds helm-gtags
       helm-ls-git helm-migemo helm-swoop helm-themes
       highlight-indentation highlight-parentheses hl-line+ volatile-highlights powerline
@@ -59,7 +59,7 @@
       smart-newline smartparens smartrep smooth-scroll
       undohist undo-tree point-undo
       yascroll yasnippet
-      comment-dwim-2 hydra
+      comment-dwim-2 hydra dired-k
       dired-filter minimap ace-link
       ))
   (let ((not-installed
