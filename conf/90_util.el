@@ -42,6 +42,9 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; hideshow
+(setq hs-isearch-open nil)
+
 
 ;;--- function ---
 (defun load-dot-emacs()

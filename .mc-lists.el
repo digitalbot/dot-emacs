@@ -12,6 +12,7 @@
         cperl-electric-paren
         cperl-electric-rparen
         cperl-electric-semi
+        cperl-electric-terminator
         cua-delete-region
         cua-paste
         electric-newline-and-maybe-indent
@@ -27,6 +28,7 @@
         org-delete-char
         org-end-of-line
         org-force-self-insert
+        org-metaright
         org-return-indent
         org-self-insert-command
         org-yank

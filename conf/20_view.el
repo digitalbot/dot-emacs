@@ -18,7 +18,6 @@
         ("l" . forward-word)
         ("j" . next-line)
         ("k" . previous-line)
-        (";" . gene-word)
         ("b" . scroll-down)
         (" " . scroll-up)
         ("J" . ,(lambda () (interactive) (scroll-up 1)))
@@ -28,6 +27,8 @@
         ("." . bm-toggle)
         ("[" . bm-previous)
         ("]" . bm-next)
+        ;; hs
+        (";" . hs-toggle-hiding)
         ))
 
 (defun define-many-keys (keymap key-table &optional includes)
@@ -42,6 +43,7 @@
 (defun view-mode-hook0 ()
   (define-many-keys view-mode-map pager-keybind)
   (hl-line-mode 1)
+  ;;(hs-minor-mode 1)
   (define-key view-mode-map " " 'scroll-up))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
@@ -52,6 +54,7 @@
            (not (file-directory-p file)))
       (view-file file)
     ad-do-it))
+
 ;; 書き込み不能な場合はview-modeを抜けないように
 (defvar view-mode-force-exit nil)
 (defmacro do-not-exit-view-mode-unless-writable-advice (f)
@@ -64,5 +67,3 @@
 
 (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
 (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
-
-

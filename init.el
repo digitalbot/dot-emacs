@@ -43,10 +43,10 @@
       c-eldoc codic google-translate
       el-spec el-spy elscreen org org-ac
       magit git-gutter gitconfig-mode gitignore-mode
-      go-mode go-snippets
+      go-mode go-snippets bm
       migemo anzu fill-column-indicator ag wgrep wgrep-ag all-ext ;gtags
       helm helm-ag helm-c-yasnippet helm-descbinds helm-gtags
-      helm-ls-git helm-migemo helm-swoop helm-themes
+      helm-ls-git helm-migemo helm-swoop helm-themes helm-bm
       highlight-indentation highlight-parentheses hl-line+ volatile-highlights powerline
       js2-mode json-mode web-mode emmet-mode markdown-mode cperl-mode
       groovy-mode malabar-mode python jedi

@@ -49,5 +49,3 @@
       meadow-p  (featurep 'meadow)
       windows-p (or cygwin-p nt-p meadow-p))
 
-(when (not windows-p)
-  (prefer-coding-system 'utf-8))

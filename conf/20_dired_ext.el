@@ -5,7 +5,7 @@
 ;; OS でファイル、ディレクトリ、URL を直接開くためのコマンドを決定する
 (defun os-open-command-name ()
   (cond (cygwin-p "cygstart")
-        (nt-p "")
+        (nt-p "open")
         (linux-p "gnome-open")
         (darwin-p "open")))
 

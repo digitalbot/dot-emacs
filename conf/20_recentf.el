@@ -36,6 +36,7 @@ do nothing. And suppress the output from `message' and
 
 
 ;; recentf-ext
+(require 'recentf-ext)
 (setq recentf-max-menu-items 8000)
 (setq recentf-max-saved-items 10000)
 

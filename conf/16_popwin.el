@@ -21,9 +21,12 @@
                 ("*ack*")
                 ("*ag*")
                 ("*Perl *")
+                ("*vc-diff*")
+                ("vc-change-log")
                 ("*Google Translate*")
                 ("*Codic Result*"))
               popwin:special-display-config))
+(push '("*grep*" :noselect t) popwin:special-display-config)
 (push '(" *auto-async-byte-compile*"
         :height 0.4
         :position bottom
@@ -33,6 +36,7 @@
         :width 0.3
         :position right)
       popwin:special-display-config)
+
 ;; (push '(".*helm.*" :height 0.4 :regexp t) popwin:special-display-config)
 
 
