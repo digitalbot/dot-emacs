@@ -3,7 +3,7 @@
 ;;;----------------------------------------
 
 ;; helm font family
-(require 'cl-lib)  ; loop, delete-duplicates
+(require 'cl)  ; loop, delete-duplicates
 (defun helm-font-families ()
   "Preconfigured `helm' for font family."
   (interactive)

@@ -24,6 +24,7 @@
         mykie:global-map:C-a:key
         mykie:global-map:C-e:key
         mykie:global-map:C-w:key
+        nxml-electric-slash
         org-beginning-of-line
         org-delete-char
         org-end-of-line
@@ -44,5 +45,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        auto-complete
         ignore
         ))
