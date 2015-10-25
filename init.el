@@ -43,7 +43,7 @@
       c-eldoc codic google-translate
       el-spec el-spy elscreen org org-ac
       magit git-gutter gitconfig-mode gitignore-mode
-      go-mode go-snippets bm
+      go-mode go-snippets bm tab-jump-out
       migemo anzu fill-column-indicator ag wgrep wgrep-ag all-ext ;gtags
       helm helm-ag helm-c-yasnippet helm-descbinds helm-gtags
       helm-ls-git helm-migemo helm-swoop helm-themes helm-bm

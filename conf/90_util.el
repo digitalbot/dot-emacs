@@ -45,6 +45,9 @@
 ;; hideshow
 (setq hs-isearch-open nil)
 
+;; tab-jump-out
+;; yasnippetと併用する場合はこの設定をする
+(setq yas-fallback-behavior '(apply tab-jump-out 1))
 
 ;;--- function ---
 (defun load-dot-emacs()
