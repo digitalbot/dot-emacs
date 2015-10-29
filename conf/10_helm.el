@@ -56,8 +56,8 @@
 
 ;; helm yas
 (require 'helm-c-yasnippet)
-(setq helm-c-yas-display-key-on-candidate t)
-(setq helm-c-yas-space-match-any-greedy t)
+(setq helm-yas-display-key-on-candidate t)
+(setq helm-yas-space-match-any-greedy t)
 
 
 
@@ -66,42 +66,49 @@
 (setq helm-ag-command-option "--all-text")
 (setq helm-ag-thing-at-point 'symbol)
 
-
 ;; cmigemo
 (with-eval-after-load "migemo"
-  (require 'helm-migemo)
-  (eval-after-load "helm-migemo"
-    '(defun helm-compile-source--candidates-in-buffer (source)
-       (helm-aif (assoc 'candidates-in-buffer source)
-           (append source
-                   `((candidates
-                      . ,(or (cdr it)
-                             (lambda ()
-                               ;; Do not use `source' because other plugins
-                               ;; (such as helm-migemo) may change it
-                               (helm-candidates-in-buffer
-                                (helm-get-current-source)))))
-                     (volatile) (match identity)))
-         source)))
-  (setq helm-use-migemo t)
-  (with-eval-after-load 'helm-show-kill-ring
-    '(helm-migemize-command helm-show-kill-ring))
-  ;; 候補が表示されないときがあるので
-  ;; migemoらないように設定
-  (defadvice helm-for-files  ;;こいつはエラー対応
-      (around ad-helm-for-files activate)
-              (let ((helm-use-migemo nil))
-                ad-do-it))
-  (defadvice helm-c-apropos
-      (around ad-helm-apropos activate)
-    (let ((helm-use-migemo nil))
-      ad-do-it))
-  (defadvice helm-M-x
-      (around ad-helm-M-x activate)
-    (let ((helm-use-migemo nil))
-      ad-do-it))
-  (defadvice helm-swoop
-      (around ad-helm-swoop activate)
-    (let ((helm-use-migemo nil))
-      ad-do-it)))
+  (require 'helm)
+  (helm-migemo-mode +1)
+  (defalias 'helm-mp-match 'helm-mm-match)
+  (defalias 'helm-mp-exact-match 'helm-mm-exact-match)
+  (defalias 'helm-mp-3-get-patterns 'helm-mm-3-get-patterns)
+  (defalias 'helm-mp-3-search-base 'helm-mm-3-search-base)
+  )
+
+;; for NT Emacs
+(when windows-p
+  ;; w32-ime-buffer-switch-p を t にして helm を利用する場合に、ミニバッファで漢字を正常に
+  ;; 使えるようにする対策（この設定がないと、ime が勝手に切り替わったりする）
+  (setq w32-ime-buffer-switch-p t)
+  (advice-add 'helm
+              :around (lambda (orig-fun &rest args)
+                        (let ((select-window-functions nil))
+                          (apply orig-fun args))))
+  ;; UNC や Tramp のパスに対して、helm-reduce-file-name が正しく機能しないことの対策
+  ;; (helm-mode 1) として dired を動かした際にhelm-find-files-up-one-level
+  ;; が正しく機能するようにする対策
+  (advice-add 'helm-reduce-file-name
+              :override (lambda (&rest args)
+                          (let ((fname (nth 0 args))
+                                (level (nth 1 args)))
+                            (while (> level 0)
+                              (setq fname (expand-file-name (concat fname "/../")))
+                              (setq level (1- level)))
+                            fname)))
+  ;; ffap を使っていて find-file-at-point を起動した場合に、カーソル位置の UNC が正しく
+  ;; 取り込まれないことの対策
+  (advice-add 'helm-completing-read-default-1
+              :around (lambda (orig-fun &rest args)
+                        (when (listp (nth 4 args))
+                          (setf (nth 4 args) (car (nth 4 args))))
+                        (cl-letf (((symbol-function 'regexp-quote)
+                                   (symbol-function 'identity)))
+                          (apply orig-fun args))))
+  ;; w32-symlinks を使っている場合に C-u 付きで helm-do-grep を起動すると、選択したファイルを
+  ;; no conversion で開いてしまうことの対策
+  (advice-add 'find-file
+              :around (lambda (orig-fun &rest args)
+                        (let ((current-prefix-arg nil))
+                          (apply orig-fun args)))))
 
