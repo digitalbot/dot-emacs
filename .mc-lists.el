@@ -47,4 +47,5 @@
       '(
         auto-complete
         ignore
+        org-ctrl-c-ctrl-c
         ))

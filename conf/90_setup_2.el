@@ -55,5 +55,26 @@
   (wrap-function-to-control-ime 'read-from-minibuffer nil nil)
   (wrap-function-to-control-ime 'y-or-n-p nil nil)
   (wrap-function-to-control-ime 'yes-or-no-p nil nil)
-  (wrap-function-to-control-ime 'map-y-or-n-p nil nil))
+  (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+  
+  ;; minibuffer に入った時、IME を OFF にする
+  (add-hook 'minibuffer-setup-hook
+            (lambda ()
+              (deactivate-input-method)))
+  (add-hook 'helm-minibuffer-set-up-hook
+            (lambda ()
+              (deactivate-input-method)))
+
+  ;; IMEの制御付きにラップする
+  ;;（上記の minibuffer の設定が機能しない関数について設定する）
+  ;; http://sanrinsha.lolipop.jp/blog/2010/07/emacs-1.html#i-4
+  (wrap-function-to-control-ime 'y-or-n-p nil nil)
+  (wrap-function-to-control-ime 'map-y-or-n-p nil nil)
+  (wrap-function-to-control-ime 'read-char nil nil)
+  
+  ;; wdired 終了時に IME が ON になっていたら OFF にする
+  (require 'wdired)
+  (advice-add 'wdired-finish-edit
+              :after (lambda (&rest args)
+                       (deactivate-input-method))))
 

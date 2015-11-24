@@ -20,7 +20,7 @@
 (global-ace-isearch-mode +1)
 (custom-set-variables
  '(ace-isearch-use-ace-jump 'printing-char)
- '(ace-isearch-input-idle-delay 0.8)
+ '(ace-isearch-input-idle-delay 1.0)
  '(ace-isearch-input-length 12))
 (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
 (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)

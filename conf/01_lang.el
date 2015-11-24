@@ -16,6 +16,21 @@
   (setenv "LANG" "ja_JP.CP932")
   (setenv "LC_ALL" "ja_JP.CP932"))
 
+;; サブプロセスに渡すパラメータの文字コードを cp932 にする
+(cl-loop for (func args-pos) in '((call-process        4)
+                                  (call-process-region 6)
+                                  (start-process       3))
+         do (eval `(advice-add ',func
+                               :around (lambda (orig-fun &rest args)
+                                         (setf (nthcdr ,args-pos args)
+                                               (mapcar (lambda (arg)
+                                                         (if (multibyte-string-p arg)
+                                                             (encode-coding-string arg 'cp932)
+                                                           arg))
+                                                       (nthcdr ,args-pos args)))
+                                         (apply orig-fun args))
+                               '((depth . 99)))))
+
 
 ;; (setenv "LANG" "ja_JP.UTF-8") 
 

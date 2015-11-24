@@ -5,7 +5,9 @@
 
 ;; emacsclient
 (require 'server)
-(unless (server-running-p) (server-start))
+(if windows-p
+    (server-force-delete))
+(server-start)
 
 ;; open-junk-file
 (require 'open-junk-file)

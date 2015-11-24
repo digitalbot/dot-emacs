@@ -62,7 +62,9 @@
 
 (eval-after-load 'eshell
   '(progn (require 'eshell-autojump nil t)
-          (defalias 'eshell/z 'eshell/j)))
+          ;; (defalias 'eshell/z 'eshell/j)
+          (require 'eshell-z)
+          ))
 
 
 ;; エスケープシーケンスを処理

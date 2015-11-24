@@ -55,7 +55,7 @@
       open-junk-file quickrun
       popwin pos-tip flycheck
       recentf-ext savekill session
-      shell-pop multi-term eshell-prompt-extras
+      shell-pop multi-term eshell-prompt-extras eshell-z
       smart-newline smartparens smartrep smooth-scroll
       undohist undo-tree point-undo
       yascroll yasnippet

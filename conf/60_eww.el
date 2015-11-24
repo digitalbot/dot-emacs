@@ -35,6 +35,9 @@
   (defun shr-put-image-alt (spec alt &optional flags)
     (insert alt))
   
+  ;; eww中に一々ewwってすんのがめんどい
+  (define-key eww-mode-map (kbd "E") 'eww)
+  
   ;; はじめから非表示
   (defun eww-mode-hook--disable-image ()
     (setq-local shr-put-image-function 'shr-put-image-alt))
