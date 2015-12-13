@@ -26,6 +26,7 @@
                 ("*Google Translate*")
                 ("*Codic Result*"))
               popwin:special-display-config))
+(push '("*quickrun*") popwin:special-display-config)
 (push '("*grep*" :noselect t) popwin:special-display-config)
 (push '(" *auto-async-byte-compile*"
         :height 0.4

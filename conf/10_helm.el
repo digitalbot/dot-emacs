@@ -49,13 +49,13 @@
 
 
 ;; helm swoop
-(require 'helm-swoop)
+;; (require 'helm-swoop)
 (setq helm-multi-swoop-edit-save t)
 (setq helm-swoop-split-with-multiple-windows nil)
 
 
 ;; helm yas
-(require 'helm-c-yasnippet)
+;; (require 'helm-c-yasnippet)
 (setq helm-yas-display-key-on-candidate t)
 (setq helm-yas-space-match-any-greedy t)
 
@@ -68,7 +68,7 @@
 
 ;; cmigemo
 (with-eval-after-load "migemo"
-  (require 'helm)
+  ;; (require 'helm)
   (helm-migemo-mode +1)
   (defalias 'helm-mp-match 'helm-mm-match)
   (defalias 'helm-mp-exact-match 'helm-mm-exact-match)
@@ -111,4 +111,3 @@
               :around (lambda (orig-fun &rest args)
                         (let ((current-prefix-arg nil))
                           (apply orig-fun args)))))
-

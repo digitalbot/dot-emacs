@@ -89,3 +89,7 @@
     (setq hl-line-face 'hi-underline)
   (setq hl-line-face 'underline)
   )
+
+;; turn on fci-mode by (fci-mode) if you want
+(setq-default fci-rule-column 80)
+(setq fci-rule-color "darkred")

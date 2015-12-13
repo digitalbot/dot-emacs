@@ -15,3 +15,14 @@
 (smartrep-define-key
     global-map "C-z" '(("n" . (elscreen-next))
                        ("p" . (elscreen-previous))))
+(global-set-key (kbd "C-z C-b") 'helm-elscreen)
+
+
+
+
+
+
+
+
+
+

@@ -37,6 +37,7 @@
   
   ;; eww中に一々ewwってすんのがめんどい
   (define-key eww-mode-map (kbd "E") 'eww)
+  (global-set-key (kbd "C-q C-e") 'eww)
   
   ;; はじめから非表示
   (defun eww-mode-hook--disable-image ()

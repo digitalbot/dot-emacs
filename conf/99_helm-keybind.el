@@ -35,7 +35,7 @@
 ;;(define-key ac-complete-mode-map (kbd "C-:") 'ac-complete-with-helm)
 
 ;; helm yas
-(global-set-key (kbd "C-q C-y") 'helm-c-yas-complete)
+(global-set-key (kbd "C-q C-y") 'helm-yas-complete)
 
 ;; helm-ls-git
 (global-set-key (kbd "C-x C-d") 'helm-ls-git-ls)
